@@ -1,65 +1,76 @@
 var gulp = require('gulp'),
-	// csswring = require('csswring'),
+	uglify = require('gulp-uglify'),
+	concat = require('gulp-concat'),
 	postcss = require('gulp-postcss'),
 	sass = require('gulp-sass'),
 	autoprefixer = require('autoprefixer'),
 	spritesmith = require('gulp.spritesmith'),
-	rucksack = require('gulp-rucksack'),
-	browserSync = require('browser-sync').create(),
-	merge = require('merge-stream');
+	merge = require('merge-stream'),
+	size = require('postcss-size'),
+	plumber = require('gulp-plumber'),
+	elixir = require('laravel-elixir');
+
+// Laravel livereload
+require('laravel-elixir-livereload');
+elixir(function(mix) {
+   mix.livereload();
+});
+
+
+/*------------------------------------*\
+    TASKS
+\*------------------------------------*/
 
 // Sass
 gulp.task('sass', function() {
 	var processors = [
-	       // csswring,
-	       autoprefixer({ browsers: ['last 20 versions'] }),
-	       require('postcss-font-magician')({}),
-	   ];
+			size,
+			autoprefixer({ browsers: ['last 20 versions'] }),
+			require('postcss-font-magician')({}),
+		];
 
-	return gulp.src('sass/style.scss')
-		.pipe(sass())
+	return gulp.src('resources/assets/sass/style.scss')
+		.pipe(plumber())
+		.pipe(sass({outputStyle: 'compressed'}))
 		.pipe(postcss(processors))
-		.pipe(gulp.dest('css/'));
+		.pipe(gulp.dest('public/build/css/'));
 });
 
 // Sprites
 gulp.task('sprite', function () {
-  var spriteData = gulp.src('images/main/*.png').pipe(spritesmith({
-    imgName: 'sprite.png',
-    cssName: 'sprite.css',
-    padding: 1,
-  }));
+	var spriteData = gulp.src('images/main/*.png').pipe(spritesmith({
+		imgName: 'sprite.png',
+		cssName: 'sprite.css',
+		padding: 1,
+	}));
 
-  var imgStream = spriteData.img
-     .pipe(gulp.dest('images/'));
+	var imgStream = spriteData.img
+		.pipe(gulp.dest('images/'));
 
-   var cssStream = spriteData.css
-     .pipe(gulp.dest('css/'));
+	var cssStream = spriteData.css
+		.pipe(gulp.dest('css/'));
 
-   return merge(imgStream, cssStream);
-  // return spriteData.pipe(gulp.dest('css/'));
+	return merge(imgStream, cssStream);
 });
 
-
-gulp.task('serve', ['sass'], function() {
-
-    browserSync.init({
-        server: ""
-    });
-
-    // gulp.watch("/sass/*.scss", { interval: 500 }, ['sass']);
-    gulp.watch("css/style.css").on('change', browserSync.reload);
-    gulp.watch("index.html").on('change', browserSync.reload);
+// Uglify and Concatenate
+gulp.task('compress', function() {
+  return gulp.src(['public/js/common.js'])
+    .pipe(plumber())
+    .pipe(concat('global.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('public/build/js/'));
 });
 
 // Watch
 gulp.task('watch', function() {
-	gulp.watch('sass/style.scss', { interval: 500 }, ['sass']);
-	gulp.watch('images/main/*.png', { interval: 500 }, ['sprite']);
+	gulp.watch('resources/assets/sass/style.scss', { interval: 500 }, ['sass']);
+	gulp.watch('public/js/common.js', { interval: 500 }, ['compress']);
+	// gulp.watch('images/main/*.png', { interval: 500 }, ['sprite']);
 });
 
 // Default task
-gulp.task('default', ['sass', 'sprite', 'watch']);
+gulp.task('default', ['sass', 'watch', 'compress']);
 
 
 
