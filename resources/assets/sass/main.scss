@@ -1,0 +1,61 @@
+/**
+* ----------------------------------------------------------------------------------------------------
+* VARIABLES
+* ----------------------------------------------------------------------------------------------------
+*/
+
+$white: #fff;
+$black: #000;
+
+/**
+* ----------------------------------------------------------------------------------------------------
+* MAIN STYLES
+* ----------------------------------------------------------------------------------------------------
+*/
+
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	line-height: 0;
+	clear: both;
+	visibility: hidden;
+	display: inline-block;
+}
+
+
+// Stcky Footer
+html, body {
+	height: 100%;
+}
+
+.wrap {
+	min-height: 100%;
+	margin-bottom: -142px;
+}
+
+.wrap:after {
+	content: "";
+	display: block;
+}
+
+.footer, .wrap:after {
+	height: 142px;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	color:red;
+}
+
+h2 {
+	color:red;
+}
+
+h3 {
+	color:red;
+}

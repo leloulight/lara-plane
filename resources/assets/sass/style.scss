@@ -2,6 +2,76 @@
 @import "bootstrap.scss";
 @import "main.scss";
 
+/**
+***************************************************************
+* =HEADER
+***************************************************************
+**/
 body {
-	background:green;
+	background:#F4F4F4;
+	font-family: "PT Sans";
+	color: #EAEAEA;
 }
+
+.header {
+	height: 400px;
+	background: url(/img/concept1.jpg) no-repeat;
+}
+
+.navbar-default {
+	background: none;
+	border: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: $white;
+	font-size: 18px;
+}
+
+/* Search Form */
+.search {
+	width: 80%;
+	margin: 0 auto;
+	padding: 15px 20px;
+	text-align: center;
+	background: rgba(0,0,0, .6);
+	border-radius: 10px;
+}
+
+.search__desc {
+	margin-bottom: 15px;
+	font-size: 32px;
+}
+
+.search-input-container {
+	position: relative;
+}
+
+.search__input {
+	width: 100%;
+	height: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
+	color: #7E7E7E;
+	font-style: 21px;
+	outline: none;
+}
+
+.search__submit {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
