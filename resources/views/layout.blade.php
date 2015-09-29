@@ -45,8 +45,8 @@
 					      <ul class="nav navbar-nav navbar-right">
 					        <li><a href="#">Флот</a></li>
 					        <li><a href="#">Карта крушений</a></li>
-					        <li><a href="#">О нас</a></li>
-					        <li><a href="#">Контакты</a></li>
+					        <li><a href="/about/">О нас</a></li>
+					        <li><a href="/contact/">Контакты</a></li>
 					        <li><a href="#">Купить кофе</a></li>
 					      </ul>
 					    </div><!-- /.navbar-collapse -->
@@ -68,7 +68,7 @@
 						<p class="search__desc">Найти космический корабль по названию</p>
 						<div class="search-input-container">
 							<input type="text" class="search__input" placeholder="Введите название космического корабля">
-							<input type="submit" class="search__submit">
+							<button type="submit" class="search__submit fa fa-search"></button>
 							<span class="search__arrow"></span>
 						</div>
 					</form>
