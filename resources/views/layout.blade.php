@@ -25,42 +25,29 @@
 	<!-- begin wrap  -->
 	<div class="wrap">
 		<header class="header">
+		<a href="#" class="hamburger-btn">
+			<span class="hamburger-btn__line"></span>
+			<span class="hamburger-btn__line"></span>
+			<span class="hamburger-btn__line"></span>
+		</a>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-24">
-					<nav class="navbar navbar-default">
-					  <div class="container-fluid">
-					    <!-- Brand and toggle get grouped for better mobile display -->
-					    <div class="navbar-header">
-					      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					        <span class="sr-only">Toggle navigation</span>
-					        <span class="icon-bar"></span>
-					        <span class="icon-bar"></span>
-					        <span class="icon-bar"></span>
-					      </button>
-					    </div>
-
-					    <!-- Collect the nav links, forms, and other content for toggling -->
-					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					      <ul class="nav navbar-nav navbar-right">
-					        <li><a href="#">Флот</a></li>
-					        <li><a href="#">Карта крушений</a></li>
-					        <li><a href="/about/">О нас</a></li>
-					        <li><a href="/contact/">Контакты</a></li>
-					        <li><a href="#">Купить кофе</a></li>
-					      </ul>
-					    </div><!-- /.navbar-collapse -->
-					  </div><!-- /.container-fluid -->
+				<div class="col-md-24 main-nav-container">
+					<nav class="main-nav">
+						<ul>
+						  <li class="main-nav__item"><a class="main-nav__link" href="#">Флот</a></li>
+						  <li class="main-nav__item"><a class="main-nav__link" href="#">Карта крушений</a></li>
+						  <li class="main-nav__item"><a class="main-nav__link" href="/about/">О нас</a></li>
+						  <li class="main-nav__item"><a class="main-nav__link" href="/contact/">Контакты</a></li>
+						  <li class="main-nav__item"><a class="main-nav__link" href="#">Купить кофе</a></li>
+						</ul>
+						<span class="main-nav__close"></span>
 					</nav>
 				</div>
-			</div> <!-- row -->
-
-			<div class="row">
-				<div class="col-md-24">
+				<div class="logo-container col-md-24">
 					<h1 class="logo"><a href="/">My logotype</a></h1>
 				</div>
-			</div>
-			<!-- /.row -->
+			</div> <!-- row -->
 
 			<div class="row">
 				<div class="col-md-24">
