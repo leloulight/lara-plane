@@ -64,8 +64,13 @@
 			<!-- /.row -->
 		</div>
 		</header>
-
-		@yield('content')
+		<div class="container">
+			<div class="row">
+				<div class="col-md-24">
+					@yield('content')
+				</div>
+			</div>
+		</div>
 
 	</div>
 	<!-- end wrap -->

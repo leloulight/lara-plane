@@ -54,7 +54,7 @@ body {
 	color: #fff;
 	font-size: 18px;
 	border-bottom: 1px solid transparent;
-	transition: border-color 1s;
+	transition: border-color .3s;
 
 	&:hover {
 		color: #fff;
@@ -90,15 +90,10 @@ body {
 	height: 5px;
 	background: $white;
 	transition: top .1s;
-
-	// &:nth-child(2) {
-	// 	height: 4px;
-	// }
 }
 
 .main-nav__close {
 	display: none;
-	// display: block;
     width: 40px;
     height: 40px;
 	position: absolute;
@@ -164,8 +159,6 @@ body {
 	}
 }
 
-
-
 .search__submit {
 	position: absolute;
 	top: 6px;
@@ -179,21 +172,20 @@ body {
 
 /**
 ***************************************************************
-* =MEDIA
+* =MEDIA QUERIES
 ***************************************************************
 **/
 
+// fix hidden menu
 @media screen and (min-width: 768px) {
 	.main-nav-container {
 		position: initial;
 	}
 }
 
-
 @media screen and (max-width: 992px) {
 	// Main nav
 	.main-nav-container {
-		// display: none;
 		position: absolute;
 		top: 0;
 		right: -100%;
