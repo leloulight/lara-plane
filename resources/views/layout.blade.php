@@ -18,7 +18,7 @@
 	<link href="{!! asset('build/css/style.css') !!}" rel="stylesheet" />
 
 	<!--[if lt IE 9]>
-		<script type="text/javascript" src="{!! asset('js/libs/html5shiv.min.js') !!}"></script>
+		<script type="text/javascript" src="{!! asset('bower/html5shiv/dist/html5shiv.min.js') !!}"></script>
 	<![endif]-->
 </head>
 <body>
@@ -76,13 +76,15 @@
 	<!-- end wrap -->
 
 	<footer class="footer">
-
+		<p>footer</p>
 	</footer>
 
 	<!-- SCRIPTS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="{!! asset('js/libs/bootstrap.min.js') !!}"></script>
 	{{-- <script src='js/libs/jquery.bxslider.min.js'></script> --}}
+
+	<script src="{!! asset('bower/masonry/dist/masonry.pkgd.min.js') !!}"></script>
 	<script src="{!! asset('build/js/global.min.js') !!}"></script>
 
 	{{-- Elixir livereload --}}

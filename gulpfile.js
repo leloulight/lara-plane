@@ -8,14 +8,15 @@ var gulp = require('gulp'),
 	merge = require('merge-stream'),
 	size = require('postcss-size'),
 	plumber = require('gulp-plumber'),
-	elixir = require('laravel-elixir');
+	elixir = require('laravel-elixir'),
+	bower = 'public/bower/'; // bower directory
+
 
 // Laravel livereload
 require('laravel-elixir-livereload');
 elixir(function(mix) {
    mix.livereload();
 });
-
 
 /*------------------------------------*\
     TASKS

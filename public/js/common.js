@@ -7,6 +7,12 @@ $(function() {
 
 	var menu = $('.main-nav-container');
 
+	/* MAIN PAGE MASONRY */
+	$('.recent').masonry({
+		columnWidth: 100,
+		itemSelector: '.recent__item'
+	});
+
 	/**
 	***************************************************************
 	* =USABILLITY

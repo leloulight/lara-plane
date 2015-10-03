@@ -56,7 +56,14 @@ html, body {
 	height: 100%;
 }
 
+body {
+	font-family: $helvetica;
+	background:#F4F4F4;
+	color: #EAEAEA;
+}
+
 .wrap {
+	overflow: hidden;
 	min-height: 100%;
 	margin-bottom: -142px;
 }
@@ -84,5 +91,9 @@ h2 {
 }
 
 h3 {
-	color:red;
+	text-transform: uppercase;
+	color: #566268;
+	margin-bottom: 15px;
+	font-size: 30px;
+
 }

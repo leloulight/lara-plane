@@ -8,15 +8,9 @@
 ***************************************************************
 **/
 
-body {
-	font-family: $helvetica;
-	background:#F4F4F4;
-	color: #EAEAEA;
-	overflow: hidden;
-}
-
 .header {
 	height: 400px;
+	margin-bottom: 40px;
 	background: url(/img/concept1.jpg) no-repeat;
 }
 
@@ -169,6 +163,37 @@ body {
 	border: none;
 	font-size: 31px;
 }
+@font-face {
+    font-family: 'dejavu_sansbook';
+    src: url('/fonts/dejavusans.eot');
+    src: url('/fonts/dejavusans.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/dejavusans.woff') format('woff'),
+         url('/fonts/dejavusans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+h3 {
+	font-family: 'dejavu_sansbook';
+}
+/**
+***************************************************************
+* =MAIN
+***************************************************************
+**/
+
+// Recent items
+.recent__item {
+	width: 20%;
+	margin-bottom: 20px;
+}
+
+/**
+***************************************************************
+* =FOOTER
+***************************************************************
+**/
+
+
 
 /**
 ***************************************************************
