@@ -24,6 +24,17 @@
 	     font-style: normal;
 }
 
+@font-face {
+    font-family: 'dejavu';
+    src: url('/fonts/dejavusans.eot');
+    src: url('/fonts/dejavusans.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/dejavusans.woff') format('woff'),
+         url('/fonts/dejavusans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 /**
 * ----------------------------------------------------------------------------------------------------
 * VARIABLES
@@ -95,5 +106,6 @@ h3 {
 	color: #566268;
 	margin-bottom: 15px;
 	font-size: 30px;
+	font-family: 'dejavu';
 
 }

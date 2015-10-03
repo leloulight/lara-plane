@@ -163,18 +163,7 @@
 	border: none;
 	font-size: 31px;
 }
-@font-face {
-    font-family: 'dejavu_sansbook';
-    src: url('/fonts/dejavusans.eot');
-    src: url('/fonts/dejavusans.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/dejavusans.woff') format('woff'),
-         url('/fonts/dejavusans.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-h3 {
-	font-family: 'dejavu_sansbook';
-}
+
 /**
 ***************************************************************
 * =MAIN
@@ -192,6 +181,23 @@ h3 {
 * =FOOTER
 ***************************************************************
 **/
+
+.footer {
+	background: #333;
+	padding-top: 20px;
+}
+
+.footer-top {
+	margin-bottom: 60px;
+}
+
+.develop {
+	text-align: right;
+}
+
+.copyright__text {
+	text-align: center;
+}
 
 
 

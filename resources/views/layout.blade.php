@@ -76,7 +76,21 @@
 	<!-- end wrap -->
 
 	<footer class="footer">
-		<p>footer</p>
+	<div class="container">
+		<div class="row footer-top">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<a href="/" class="footer-logo">Footer-logo</a>
+			</div>
+			<div class="develop col-md-12 col-sm-12 col-xs-12">
+				<a href="#" class="develop__link">Develop Link</a>
+			</div>
+		</div>
+		<div class="row footer-bottom">
+			<div class="copyright col-md-24">
+				<p class="copyright__text">Copyright &copy; 2015.</p>
+			</div>
+		</div>
+	</div>
 	</footer>
 
 	<!-- SCRIPTS -->
