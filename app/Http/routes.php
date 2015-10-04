@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-// Pages
-//Route::get('admin', 'adminController@index')->before('auth.basic');
+// Admin panel
+Route::get('admin', 'adminController@index');
+Route::get('admin/create', 'adminController@create');
 
+
+// Pages
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
