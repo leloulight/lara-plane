@@ -115,7 +115,7 @@ return [
          */
         // My
         Bestmomo\Scafold\ScafoldServiceProvider::class, // for auth
-        Illuminate\Html\HtmlServiceProvider, // for forms
+        Collective\Html\HtmlServiceProvider::class, // for form
 
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
@@ -164,8 +164,8 @@ return [
 
     'aliases' => [
         // My
-        'Form'=> Illuminate\Html\FormFacade,
-        'HTML'=> Illuminate\Html\HtmlFacade,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,

@@ -4,7 +4,8 @@
     <h1>Create Plain</h1>
     <hr/>
 
-    {{!! FORM::open() !!}}
-
-    {{!! FORM::close() !!}}
+    {!! Form::open(array('url' => 'foo/bar')) !!}
+        {!! Form::label('name', 'for name') !!}
+        {!! Form::text('name') !!}
+    {!! Form::close() !!}
 @stop
