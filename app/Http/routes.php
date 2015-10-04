@@ -15,7 +15,15 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+
 // Pages
+//Route::get('admin', 'adminController@index')->before('auth.basic');
+
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
+Route::controllers([
+    "auth" => "Auth\AuthController",
+    "password" => "Auth\PasswordController",
+]);
