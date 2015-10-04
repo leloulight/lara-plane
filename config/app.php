@@ -113,6 +113,9 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        // My
+        Bestmomo\Scafold\ScafoldServiceProvider::class,
+
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,

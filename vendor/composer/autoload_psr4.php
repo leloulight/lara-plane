@@ -28,5 +28,6 @@ return array(
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
+    'Bestmomo\\Scafold\\' => array($vendorDir . '/bestmomo/scafold/src'),
     'App\\' => array($baseDir . '/app'),
 );
