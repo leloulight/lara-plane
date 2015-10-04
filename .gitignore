@@ -1,3 +1,4 @@
 /node_modules
+.idea/
 Homestead.yaml
 Homestead.json

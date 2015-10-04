@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
-
 // Pages
 //Route::get('admin', 'adminController@index')->before('auth.basic');
 

@@ -8,13 +8,21 @@ use App\Http\Controllers\Controller;
 
 class adminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        echo "You are admin!";
+    public function index() {
+
     }
+
+    public function create() {
+
+    }
+
+    public function update() {
+
+    }
+
+    public function delete() {
+
+    }
+
+
 }
