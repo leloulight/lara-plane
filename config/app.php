@@ -114,7 +114,8 @@ return [
          * Laravel Framework Service Providers...
          */
         // My
-        Bestmomo\Scafold\ScafoldServiceProvider::class,
+        Bestmomo\Scafold\ScafoldServiceProvider::class, // for auth
+        Illuminate\Html\HtmlServiceProvider, // for forms
 
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
@@ -162,6 +163,9 @@ return [
     */
 
     'aliases' => [
+        // My
+        'Form'=> Illuminate\Html\FormFacade,
+        'HTML'=> Illuminate\Html\HtmlFacade,
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
