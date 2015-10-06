@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- BOOTSTRAP -->
-    {{-- <link href="{!! asset('css/bootstrap.min.css') !!}" rel="stylesheet" /> --}}
+     <link href="{!! asset('css/bootstrap.min.css') !!}" rel="stylesheet" />
     <!-- FONT-AWESOME -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="{!! asset('css/admin.css') !!}" rel="stylesheet" />
@@ -15,6 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-24">
+                <a href="/admin/">ADMIN PANEL</a>
                 @yield('content')
             </div>
         </div>

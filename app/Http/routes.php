@@ -18,6 +18,7 @@ Route::get('/', function () {
 // Admin panel
 Route::get('admin', 'adminController@index');
 Route::get('admin/create', 'adminController@create');
+Route::post('admin', 'adminController@store');
 
 
 // Pages
