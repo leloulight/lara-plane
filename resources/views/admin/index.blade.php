@@ -8,6 +8,6 @@
     <h2>Recent Spaceships</h2>
 
     @foreach($spaceships as $value)
-        <p>{{ $value->name }}</p>
+        <a href="/admin/{{ $value->id }}">{{ $value->name }}</a>
     @endforeach
 @stop

@@ -5,9 +5,15 @@
     <hr/>
 
     {!! Form::open(array('url' => 'admin')) !!}
-        {!! Form::label('name', 'Name', ['class' => 'add_form__label']) !!}
-        {!! Form::text('name', null, ['class' => 'add-form__input']) !!}
+    {!! Form::label('name', 'Name', ['class' => 'add_form__label']) !!}
+    {!! Form::text('name', null, ['class' => 'add-form__input']) !!}
 
-        {!! Form::submit('Добавить', ['class' => 'add-form__submit']) !!}
+    {!! Form::submit('Добавить', ['class' => 'add-form__submit']) !!}
     {!! Form::close() !!}
+
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            {{ $error }}
+        @endforeach
+    @endif
 @stop

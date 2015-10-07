@@ -6,7 +6,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Spaceships;
-use Request;
+use App\Http\Requests\CreateSpaceshipRequest;
+//use Request;
 
 class adminController extends Controller
 {
@@ -28,13 +29,21 @@ class adminController extends Controller
         return view('admin.delete');
     }
 
-    public function store() {
+    public function show($id) {
+        $spaceship = Spaceships::findOrFail($id);
+
+        return view('admin.show', compact('spaceship'));
+    }
+
+    // Add to db from the form
+    public function store(CreateSpaceshipRequest $request) {
+        // validation
+
         // Получаем данные из формы
-        $input = Request::all();
+//        $input = Request::all();
 
         $spaceships = new Spaceships();
-//        $spaceships->name = $input['name'];
-        $spaceships->create($input);
+        $spaceships->create($request->all());
         return redirect('admin');
     }
 
