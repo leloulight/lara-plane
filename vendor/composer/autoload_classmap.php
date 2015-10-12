@@ -516,4 +516,5 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UniqSpaceshipsTable' => $baseDir . '/database/migrations/2015_10_12_221757_uniq_spaceships_table.php',
 );

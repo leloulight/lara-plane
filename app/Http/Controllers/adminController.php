@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Spaceships; // for database
+use App\Http\Requests\CreateSpaceshipRequest; // for validation
 //use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Spaceships;
-use App\Http\Requests\CreateSpaceshipRequest;
-//use Request;
 
 class adminController extends Controller
 {
@@ -38,10 +37,6 @@ class adminController extends Controller
     // Add to db from the form
     public function store(CreateSpaceshipRequest $request) {
         // validation
-
-        // Получаем данные из формы
-//        $input = Request::all();
-
         $spaceships = new Spaceships();
         $spaceships->create($request->all());
         return redirect('admin');
