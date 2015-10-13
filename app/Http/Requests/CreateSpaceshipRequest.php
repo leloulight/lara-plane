@@ -25,6 +25,14 @@ class CreateSpaceshipRequest extends Request
     {
         return [
             'name' => "required",
+            'description' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Поле :attribute не должно быть пустым!',
         ];
     }
 }
