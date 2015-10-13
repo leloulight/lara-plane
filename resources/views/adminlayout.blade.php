@@ -18,6 +18,8 @@
                 <header>
                     <a href="/admin/" class="admin-logo">ADMIN PANEL</a>
                 </header>
+                @include('partials.flash')
+
                 @yield('content')
             </div>
         </div>

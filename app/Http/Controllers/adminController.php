@@ -39,6 +39,7 @@ class adminController extends Controller
         // validation
         $spaceships = new Spaceships();
         $spaceships->create($request->all());
+        session()->flash('flash_message', 'Корабль добавлен в базу.');
         return redirect('admin');
     }
 
