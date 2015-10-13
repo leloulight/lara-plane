@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Spaceships; // for database
-use App\Http\Requests\CreateSpaceshipRequest; // for validation
+use App\Http\Requests\SpaceshipRequest; // for validation
 //use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,9 +20,19 @@ class adminController extends Controller
         return view('admin.create');
     }
 
-    public function update() {
-        return view('admin.update');
+    public function edit($id) {
+        $spaceships = Spaceships::findOrFail($id);
+        return view('admin.edit', compact('spaceships'));
     }
+
+    public function update($id, SpaceshipRequest $request) {
+        $spaceships = Spaceships::findOrFail($id);
+        $spaceships->update($request->all());
+        session()->flash('flash_message', 'Корабль обновлен.');
+        return redirect('admin');
+    }
+
+
 
     public function delete() {
         return view('admin.delete');
@@ -35,7 +45,7 @@ class adminController extends Controller
     }
 
     // Add to db from the form
-    public function store(CreateSpaceshipRequest $request) {
+    public function store(SpaceshipRequest $request) {
         // validation
         $spaceships = new Spaceships();
         $spaceships->create($request->all());

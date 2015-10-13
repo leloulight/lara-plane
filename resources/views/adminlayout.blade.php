@@ -18,14 +18,13 @@
                 <header>
                     <a href="/admin/" class="admin-logo">ADMIN PANEL</a>
                 </header>
-                @include('partials.flash')
+                {{-- Message about added spaceship--}}
+                @include('partials.admin.flash')
 
                 @yield('content')
             </div>
         </div>
     </div>
-
-
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
