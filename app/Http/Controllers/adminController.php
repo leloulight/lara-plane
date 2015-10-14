@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Spaceships; // for database
 use App\Http\Requests\SpaceshipRequest; // for validation
-//use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
