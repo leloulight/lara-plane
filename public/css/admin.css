@@ -8,6 +8,42 @@ header {
     font-size: 25px;
 }
 
+/* RECENT */
+
+.recent__list {
+    padding: 0;
+    list-style-type: none;
+}
+.recent__item {
+    margin-bottom: 10px;
+}
+
+.recent__link {
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.recent__edit,
+.recent__remove{
+    font-size: 25px;
+}
+
+.recent__edit {
+    margin-right: 10px;
+    float: left;
+}
+
+.recent__edit:hover,
+.recent__remove:hover {
+    text-decoration: none;
+}
+
+.recent__remove {
+    font-size: 13px;
+}
+
 
 
 

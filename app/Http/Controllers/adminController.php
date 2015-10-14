@@ -15,8 +15,22 @@ class adminController extends Controller
         return view('admin.index', compact('spaceships'));
     }
 
+    public function show($id) {
+        $spaceship = Spaceships::findOrFail($id);
+
+        return view('admin.show', compact('spaceship'));
+    }
+
     public function create() {
         return view('admin.create');
+    }
+
+    // Add to db from the form
+    public function store(SpaceshipRequest $request) {
+        $spaceships = new Spaceships();
+        $spaceships->create($request->all());
+        session()->flash('flash_message', 'Корабль добавлен в базу.');
+        return redirect('admin');
     }
 
     public function edit($id) {
@@ -31,26 +45,12 @@ class adminController extends Controller
         return redirect('admin');
     }
 
-
-
-    public function delete() {
-        return view('admin.delete');
-    }
-
-    public function show($id) {
-        $spaceship = Spaceships::findOrFail($id);
-
-        return view('admin.show', compact('spaceship'));
-    }
-
-    // Add to db from the form
-    public function store(SpaceshipRequest $request) {
-        // validation
+    public function destroy($id) {
         $spaceships = new Spaceships();
-        $spaceships->create($request->all());
-        session()->flash('flash_message', 'Корабль добавлен в базу.');
+        $flight = $spaceships->find($id);
+        $flight->delete();
+
+        session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
         return redirect('admin');
     }
-
-
 }
