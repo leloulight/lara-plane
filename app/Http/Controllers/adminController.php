@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class adminController extends Controller
 {
     public function index() {
-        $spaceships = Spaceships::latest('created_at')->get();
+        $spaceships = Spaceships::latest('created_at')->paginate(5);
 
         return view('admin.index', compact('spaceships'));
     }
@@ -27,8 +27,7 @@ class adminController extends Controller
 
     // Add to db from the form
     public function store(SpaceshipRequest $request) {
-        $spaceships = new Spaceships();
-        $spaceships->create($request->all());
+        Spaceships::create($request->all());
         session()->flash('flash_message', 'Корабль добавлен в базу.');
         return redirect('admin');
     }
@@ -47,8 +46,7 @@ class adminController extends Controller
     }
 
     public function destroy($id) {
-        $spaceships = new Spaceships();
-        $flight = $spaceships->find($id);
+        $flight = Spaceships::find($id);
         $flight->delete();
 
         session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
