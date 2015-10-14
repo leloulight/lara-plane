@@ -39,8 +39,9 @@ class adminController extends Controller
     }
 
     public function update($id, SpaceshipRequest $request) {
-        $spaceships = Spaceships::findOrFail($id);
-        $spaceships->update($request->all());
+        $spaceships = new Spaceships();
+        $flight = $spaceships->findOrFail($id);
+        $flight->update($request->all());
         session()->flash('flash_message', 'Корабль обновлен.');
         return redirect('admin');
     }
