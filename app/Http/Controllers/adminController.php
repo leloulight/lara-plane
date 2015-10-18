@@ -6,6 +6,9 @@ use App\Spaceships; // for database
 use App\Http\Requests\SpaceshipRequest; // for validation
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class adminController extends Controller
 {
@@ -27,8 +30,38 @@ class adminController extends Controller
 
     // Add to db from the form
     public function store(SpaceshipRequest $request) {
-        Spaceships::create($request->all());
+        $spaceships = new Spaceships(Array(
+            'name' => $request->get('name'),
+            'assignment' => $request->get('assignment'),
+            'real' => $request->get('real'),
+            'description' => $request->get('description'),
+            'meta-description' => $request->get('meta-description'),
+            'country' => $request->get('country'),
+            'video' => $request->get('video'),
+            'cost' => $request->get('cost'),
+            'crew' => $request->get('crew'),
+            'speed' => $request->get('speed'),
+            'length' => $request->get('length'),
+            'width' => $request->get('width'),
+            'height' => $request->get('height'),
+        ));
+        $destinationPath = base_path() . '/public/uploads/spaceships';
+
+        // If has preview image
+        if($request->hasFile('preview')) {
+            $preview = $request->file('preview');
+            $previewName = $preview->getClientOriginalName();
+
+            $request->file('preview')->move($destinationPath, $previewName);
+            // add to model
+            $previewName = $destinationPath . '/' . $previewName;
+            // update the data from form
+            $spaceships['preview'] = $previewName;
+        }
+
+        $spaceships->save();
         session()->flash('flash_message', 'Корабль добавлен в базу.');
+
         return redirect('admin');
     }
 

@@ -8,7 +8,7 @@
         <div class="col-md-6 col-sm-8 col-xs-12">
             @include('errors.admin.form')
 
-            {!! Form::open(array('url' => 'admin')) !!}
+            {!! Form::open(array('url' => 'admin', 'files' => 'true')) !!}
                 @include('admin.form', ['buttontext' => 'Добавить'])
             {!! Form::close() !!}
         </div>

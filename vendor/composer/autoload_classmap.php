@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddPreviewToSpaceships' => $baseDir . '/database/migrations/2015_10_18_163727_Add_preview_to_spaceships.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateSpaceshipsTable' => $baseDir . '/database/migrations/2015_10_05_224235_create_spaceships_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',

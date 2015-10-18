@@ -26,6 +26,7 @@ class SpaceshipRequest extends Request
         return [
             'name' => "required",
             'description' => 'required',
+            'preview' => "mimes:png,jpeg",
         ];
     }
 
@@ -33,6 +34,7 @@ class SpaceshipRequest extends Request
     {
         return [
             'required' => 'Поле :attribute не должно быть пустым!',
+            'mimes' => 'Поле preview должно быть .png, .jpeg',
         ];
     }
 }

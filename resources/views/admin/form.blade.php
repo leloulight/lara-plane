@@ -5,6 +5,11 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('preivew', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::file('preview', null) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('assignment', 'Назначение', ['class' => 'add_form__label']) !!}
     {!! Form::text('assignment', null, ['class' => 'add-form__input form-control']) !!}
 </div>
@@ -31,7 +36,7 @@
 
 <div class="form-group">
     {!! Form::label('video', 'Видео', ['class' => 'add_form__label']) !!}
-    {!! Form::text('video', 'dwad', ['class' => 'add-form__input form-control']) !!}
+    {!! Form::text('video', null, ['class' => 'add-form__input form-control']) !!}
 </div>
 
 <div class="form-group">
