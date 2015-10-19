@@ -14,7 +14,7 @@ class CreateSpaceshipsTable extends Migration
     {
         Schema::create('spaceships', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('status');
+//            $table->boolean('status');
             $table->string('name');
             $table->string('preview');
             $table->string('assignment');

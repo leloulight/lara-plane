@@ -16,7 +16,8 @@
 
 <div class="form-group">
     {!! Form::label('real', 'Реальность', ['class' => 'add_form__label']) !!}
-    {!! Form::checkbox('real') !!}
+    {!! Form::hidden('real', false) !!}
+    {!! Form::checkbox('real', true) !!}
 </div>
 
 <div class="form-group">

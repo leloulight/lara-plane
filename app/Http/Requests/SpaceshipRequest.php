@@ -24,9 +24,9 @@ class SpaceshipRequest extends Request
     public function rules()
     {
         return [
-            'name' => "required",
-            'description' => 'required',
-            'preview' => "mimes:png,jpeg",
+//            'name' => "required",
+//            'description' => 'required',
+//            'preview' => "mimes:png,jpeg",
         ];
     }
 
