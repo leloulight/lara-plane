@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'PagesController@index');
 
 // Admin panel
 Route::resource('admin', 'adminController');

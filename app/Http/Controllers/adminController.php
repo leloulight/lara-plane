@@ -8,8 +8,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 class adminController extends Controller
 {
     public function index() {
@@ -30,6 +28,8 @@ class adminController extends Controller
 
     // Add to db from the form
     public function store(SpaceshipRequest $request) {
+        $destinationPath = 'uploads/spaceships'; // uploads folder
+
         $spaceships = new Spaceships(Array(
             'name' => $request->get('name'),
             'assignment' => $request->get('assignment'),
@@ -45,7 +45,6 @@ class adminController extends Controller
             'width' => $request->get('width'),
             'height' => $request->get('height'),
         ));
-        $destinationPath = base_path() . '/public/uploads/spaceships';
 
         // If has preview image
         if($request->hasFile('preview')) {
