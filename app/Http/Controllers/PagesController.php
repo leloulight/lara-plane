@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class PagesController extends Controller
 {
     public function index() {
-        $spaceships = Spaceships::latest('created_at')->paginate(20);
+        $spaceships = Spaceships::latest('created_at')->paginate(15);
 
         return view('home', compact('spaceships'));
     }

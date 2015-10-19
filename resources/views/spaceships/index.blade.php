@@ -1,9 +1,8 @@
-@extends('layout')
+@extends('pagelayout')
 
 @section('content')
-    <h3>Последние добавленные</h3>
-   	<ul class="recent">
-        @if(count($spaceships) > 0)
+    @if(count($spaceships) > 0)
+        <ul class="spaceships">
             @foreach($spaceships as $ship)
                 <li class="recent__item">
                     <a href="/spaceships/{!! $ship->id !!}">
@@ -12,9 +11,9 @@
                     </a>
                 </li>
             @endforeach
-        @endif
-   	</ul>
+        </ul>
 
-    {{-- PAGINATION --}}
-    {!! $spaceships->render() !!}
-@stop
+        {{-- PAGINATION --}}
+        {!! $spaceships->render() !!}
+    @endif
+@endsection
