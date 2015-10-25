@@ -172,10 +172,48 @@
 **/
 
 // Recent items
+.recent {
+	margin-bottom: 30px;
+}
+
 .recent__item {
 	width: 22%;
-	// margin-bottom: 20px;
-	margin: 10px
+	margin: 10px;
+	overflow: hidden;
+
+	&:hover .recent__name {
+		left: 0;
+	}
+
+	&:hover .recent__image {
+		transform: scale(1.2);
+	}
+}
+
+.recent__link {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.recent__name {
+	position: absolute;
+	display: block;
+	top: 10%;
+	left: 100%;
+	width: 100%;
+	font-size: 17px;
+	color: #fff;
+	text-transform: uppercase;
+	padding: 6px 10px;
+	background: rgba(0,0,0, .8);
+	transition: left .4s;
+}
+
+.recent__image {
+	transition: all .5s;
 }
 
 /**
@@ -186,19 +224,96 @@
 
 .footer {
 	background: #333;
-	padding-top: 20px;
+	padding-top: 35px;
 }
 
 .footer-top {
-	margin-bottom: 60px;
+	margin-bottom: 20px;
+}
+
+.footer-logo {
+	color: $white;
+	font-size: 22px;
+}
+
+/* footer nav */
+.footer-nav__item {
+	float: left;
+	margin-right: 33px;
+
+	&:last-child {
+		margin-right: 0;
+		position: relative;
+		padding-left: 28px;
+
+		&:after {
+			content: "\f0f4";
+		    font-family: FontAwesome;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    color: $white;
+		    font-size: 18px;
+		}
+	}
+}
+
+.footer-nav__link {
+	color: $white;
+	font-size: 18px;
+
+	&:hover {
+		color: $white;
+	}
 }
 
 .develop {
 	text-align: right;
 }
 
+.develop__link {
+	text-decoration: underline;
+	color: #A97B42;
+}
+
 .copyright__text {
 	text-align: center;
+}
+
+/**
+***************************************************************
+* =PAGINATION
+***************************************************************
+**/
+.pagination-container {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.pagination {
+	display: inline-block;
+	margin-bottom: 20px;
+
+	li {
+		float: left;
+
+		a,
+		span {
+			position: relative;
+			padding: 8px 12px;
+			line-height: 1.42857143;
+			text-decoration: none;
+			color: $black;
+			background-color: #ffffff;
+			border: 1px solid #dddddd;
+			margin-left: -2px;
+		}
+	}
+
+	.disabled span,
+	.active span {
+		color: #D0D0D0;
+	}
 }
 
 
@@ -269,6 +384,34 @@
 	.recent__item {
 		width: 45%;
 	}
+
+	// footer menu
+	.footer-nav__item {
+		margin-right: 10px;
+	}
+
+	.footer-nav__link {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	/* footer */
+	.wrap {
+		margin-bottom: -190px;
+	}
+
+	.footer, .wrap:after {
+		height: 190px;
+	}
+	/* footer menu */
+	.footer-menu {
+		margin-bottom: 15px;
+	}
+
+	.develop {
+		float: right;
+	}
 }
 
 @media screen and (max-width: 681px) {
@@ -295,6 +438,10 @@
 	}
 
 	// Recent items
+	.recent {
+		overflow: hidden; // if none recent items on main page are go out of frame
+	}
+
 	.recent__item {
 		width: 100%;
 	}
