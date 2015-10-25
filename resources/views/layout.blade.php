@@ -1,7 +1,5 @@
 @include('header')
 <body>
-<div class="wrap"><!-- begin wrap  -->
-
 		<header class="header main-page-header">
 		<a href="#" class="hamburger-btn">
 			<span class="hamburger-btn__line"></span>
@@ -32,7 +30,7 @@
 					<form action="#" class="search">
 						<p class="search__desc">Найти космический корабль по названию</p>
 						<div class="search-input-container">
-							<input type="text" class="search__input" placeholder="Введите название космического корабля">
+							<input type="text" class="search__input" placeholder="Название корабля">
 							<button type="submit" class="search__submit fa fa-search"></button>
 							<span class="search__arrow"></span>
 						</div>
@@ -49,7 +47,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<!-- end wrap -->
 

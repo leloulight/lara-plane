@@ -8,9 +8,15 @@ $(function() {
 	var menu = $('.main-nav-container');
 
 	/* MAIN PAGE MASONRY */
-	$('.recent').masonry({
-		columnWidth: 100,
-		itemSelector: '.recent__item'
+	var container = document.querySelector('.recent'),
+		msnry = new Masonry( container, {
+			columnWidth: 30,
+			gutter: 10,
+			itemSelector: 'recent__item',
+		});
+
+	imagesLoaded( container, function() {
+		msnry = new Masonry( container );
 	});
 
 	/**

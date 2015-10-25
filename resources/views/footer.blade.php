@@ -23,6 +23,7 @@
 {{-- <script src='js/libs/jquery.bxslider.min.js'></script> --}}
 
 <script src="{!! asset('bower/masonry/dist/masonry.pkgd.min.js') !!}"></script>
+<script src="{!! asset('bower/imagesloaded/imagesloaded.js') !!}"></script>
 <script src="{!! asset('build/js/global.min.js') !!}"></script>
 
 {{-- Elixir livereload --}}
