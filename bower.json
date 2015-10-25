@@ -1,0 +1,25 @@
+{
+  "name": "laravel-project",
+  "description": "first laravel project",
+  "main": "gulpfile.js",
+  "authors": [
+    "lollipop.fly"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/lollipopfly/lara-plane",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bxslider": "*",
+    "html5shiv": "~3.7.3",
+    "imagesloaded": "~3.1.8",
+    "masonry": "~3.3.2"
+  }
+}
