@@ -6,6 +6,7 @@ use App\Spaceships; // for database
 use App\Http\Requests\SpaceshipRequest; // for validation
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use File; // for file deleting
 use Illuminate\Support\Facades\Request;
 
 class adminController extends Controller
@@ -79,6 +80,9 @@ class adminController extends Controller
 
     public function destroy($id) {
         $flight = Spaceships::find($id);
+
+        File::delete($flight->preview); // delete preview image
+
         $flight->delete();
 
         session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
