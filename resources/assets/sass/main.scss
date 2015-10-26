@@ -44,6 +44,8 @@
 $white: #fff;
 $black: #566268;
 $gray: #7E7E7E;
+$gray-light: #EAEAEA;
+$main: #566268;
 $helvetica: "HelveticaNeue", Arial, sans-serif;
 
 
@@ -80,7 +82,6 @@ html, body {
 body {
 	font-family: $helvetica;
 	background:#F4F4F4;
-	color: #EAEAEA;
 }
 
 .wrap {
@@ -103,13 +104,14 @@ img {
 	height: auto;
 }
 
-h2 {
-	color:red;
+h1,
+h2,
+h3 {
+	color: $main;
 }
 
 h3 {
 	text-transform: uppercase;
-	color: #566268;
 	margin-bottom: 15px;
 	font-size: 30px;
 	font-family: 'dejavu';

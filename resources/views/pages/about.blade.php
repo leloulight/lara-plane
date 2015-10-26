@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('pagelayout')
 
 @section('content')
 	<h1>About</h1>

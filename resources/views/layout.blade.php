@@ -1,6 +1,5 @@
 @include('header')
-<body>
-	<header class="header main-page-header">
+	<header class="header header--main-page">
 		<a href="#" class="hamburger-btn">
 			<span class="hamburger-btn__line"></span>
 			<span class="hamburger-btn__line"></span>
@@ -10,14 +9,7 @@
 			<div class="row">
 				<div class="col-md-24 main-nav-container">
 					<nav class="main-nav">
-						<ul>
-						  <li class="main-nav__item"><a class="main-nav__link" href="/spaceships/">Флот</a></li>
-						  <li class="main-nav__item"><a class="main-nav__link" href="#">Карта крушений</a></li>
-						  <li class="main-nav__item"><a class="main-nav__link" href="/about/">О нас</a></li>
-						  <li class="main-nav__item"><a class="main-nav__link" href="/contact/">Контакты</a></li>
-						  <li class="main-nav__item"><a class="main-nav__link" href="#">Купить кофе</a></li>
-						</ul>
-						<span class="main-nav__close"></span>
+						@include('partials.pages.menu')
 					</nav>
 				</div>
 				<div class="logo-container col-md-24">
