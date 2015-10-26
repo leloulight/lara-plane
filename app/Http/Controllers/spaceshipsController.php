@@ -16,7 +16,7 @@ class spaceshipsController extends Controller
      */
     public function index()
     {
-        $spaceships = Spaceships::latest('created_at')->paginate(15);
+        $spaceships = Spaceships::latest('created_at')->paginate(10);
         return view('spaceships.index', compact('spaceships'));
     }
 

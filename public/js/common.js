@@ -10,7 +10,7 @@ $(function() {
 	/* MAIN PAGE MASONRY */
 	var container = document.querySelector('.recent'),
 		msnry = new Masonry( container, {
-			columnWidth: 30,
+			columnWidth: 45,
 			gutter: 10,
 			itemSelector: 'recent__item',
 		});

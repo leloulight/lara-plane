@@ -1,8 +1,9 @@
 var gulp = require('gulp'),
+	postcss = require('gulp-postcss'),
 	uglify = require('gulp-uglify'),
 	concat = require('gulp-concat'),
-	postcss = require('gulp-postcss'),
 	sass = require('gulp-sass'),
+	selectors = require('postcss-custom-selectors'),
 	autoprefixer = require('autoprefixer'),
 	spritesmith = require('gulp.spritesmith'),
 	merge = require('merge-stream'),
@@ -28,6 +29,7 @@ gulp.task('sass', function() {
 			size,
 			autoprefixer({ browsers: ['last 20 versions'] }),
 			require('postcss-font-magician')({}),
+			selectors,
 		];
 
 	return gulp.src('resources/assets/sass/style.scss')

@@ -54,7 +54,7 @@ $helvetica: "HelveticaNeue", Arial, sans-serif;
 * Mixins
 * ----------------------------------------------------------------------------------------------------
 */
-
+@custom-selector :--link-effect :hover, :active, :focus;
 
 
 /**

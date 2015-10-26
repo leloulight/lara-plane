@@ -1,6 +1,6 @@
 @include('header')
     <header class="header">
-       <a href="#" class="hamburger-btn">
+       <a href="#" class="hamburger-btn hamburger-btn--pages">
         <span class="hamburger-btn__line"></span>
         <span class="hamburger-btn__line"></span>
         <span class="hamburger-btn__line"></span>
