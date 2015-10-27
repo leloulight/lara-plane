@@ -29,12 +29,6 @@
 </footer>
 
 <!-- SCRIPTS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="{!! asset('js/libs/bootstrap.min.js') !!}"></script>
-{{-- <script src='js/libs/jquery.bxslider.min.js'></script> --}}
-
-<script src="{!! asset('bower/masonry/dist/masonry.pkgd.min.js') !!}"></script>
-<script src="{!! asset('bower/imagesloaded/imagesloaded.js') !!}"></script>
 <script src="{!! asset('build/js/global.min.js') !!}"></script>
 
 {{-- Elixir livereload --}}

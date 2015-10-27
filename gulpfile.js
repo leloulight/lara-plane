@@ -58,7 +58,10 @@ gulp.task('sprite', function () {
 
 // Uglify and Concatenate
 gulp.task('compress', function() {
-  return gulp.src(['public/js/common.js'])
+  return gulp.src(['public/bower/jquery/dist/jquery.js',
+                    'public/bower/masonry/dist/masonry.pkgd.min.js',
+                    'public/bower/imagesloaded/imagesloaded.js',
+                    'public/js/common.js'])
     .pipe(plumber())
     .pipe(concat('global.min.js'))
     .pipe(uglify())
