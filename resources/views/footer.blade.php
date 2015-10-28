@@ -10,7 +10,6 @@
                     <ul>
                       <li class="footer-nav__item"><a class="footer-nav__link" href="/spaceships/">Флот</a></li>
                       <li class="footer-nav__item"><a class="footer-nav__link" href="#">Карта крушений</a></li>
-                      <li class="footer-nav__item"><a class="footer-nav__link" href="/about/">О нас</a></li>
                       <li class="footer-nav__item"><a class="footer-nav__link" href="/contact/">Контакты</a></li>
                       <li class="footer-nav__item"><a class="footer-nav__link" href="#">Купить кофе</a></li>
                     </ul>

@@ -8,7 +8,7 @@
     <h4>Recent Spaceships</h4>
 
     @if(count($spaceships) > 0)
-        <div class="recent">
+        <div class="recent--admin">
             <ul class="recent__list">
                 @foreach($spaceships as $value)
                     <li class="recent__item">

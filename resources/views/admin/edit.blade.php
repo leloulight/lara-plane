@@ -8,8 +8,8 @@
         <div class="col-md-6 col-sm-8 col-xs-12">
             @include('errors.admin.form')
 
-            {!! Form::model($spaceships, array('method' => 'PATCH', 'action' => ['adminController@update', $spaceships->id])) !!}
-                @include('admin.form', ['buttontext' => 'Обновить'])
+            {!! Form::model($spaceships, array('method' => 'PATCH', 'class' => 'admin-form', 'files' => 'true', 'action' => ['adminController@update', $spaceships->id])) !!}
+                @include('admin.form_edit', ['buttontext' => 'Обновить'])
             {!! Form::close() !!}
         </div>
     </div>

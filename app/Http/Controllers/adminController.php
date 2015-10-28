@@ -49,6 +49,7 @@ class adminController extends Controller
 
         // If has preview image
         if($request->hasFile('preview')) {
+
             $preview = $request->file('preview');
             $previewName = $preview->getClientOriginalName();
 
@@ -70,11 +71,29 @@ class adminController extends Controller
         return view('admin.edit', compact('spaceships'));
     }
 
+
     public function update($id, SpaceshipRequest $request) {
+        $destinationPath = 'uploads/spaceships'; // uploads folder
+
         $spaceships = new Spaceships();
         $flight = $spaceships->findOrFail($id);
-        $flight->update($request->all());
+
+        // Иначе не обновит
+        $data = $request->all();
+
+        // If has preview image
+        if($request->hasFile('preview')) {
+            $preview = $request->file('preview');
+            $previewName = $preview->getClientOriginalName();
+
+            $request->file('preview')->move($destinationPath, $previewName);
+            $previewName = $destinationPath . '/' . $previewName;
+            $data['preview'] = $previewName;
+        }
+
+        $flight->update($data);
         session()->flash('flash_message', 'Корабль обновлен.');
+
         return redirect('admin');
     }
 
