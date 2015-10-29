@@ -29,22 +29,15 @@ class adminController extends Controller
     // Add to db from the form
     public function store(SpaceshipRequest $request) {
         $destinationPath = 'uploads/spaceships'; // uploads folder
-
         $data = $request->all();
         $spaceships = new Spaceships($data);
 
         // If has preview image
         if($request->hasFile('preview')) {
             $preview = $request->file('preview');
-            $previewName = $preview->getClientOriginalName();
 
-            // generate hash for uniq image name
-            $previewName = $this->generateNameForPreview($previewName);
-
-            $request->file('preview')->move($destinationPath, $previewName);
-            // add to model
-            $previewName = $destinationPath . '/' . $previewName;
-            // update the data from form
+            // Upload preview image
+            $previewName = $this->renameAndUploadImage($preview, $request, $destinationPath);
             $spaceships['preview'] = $previewName;
         }
 
@@ -71,17 +64,12 @@ class adminController extends Controller
 
         // If has preview image
         if($request->hasFile('preview')) {
+            $preview = $request->file('preview');
             // delete old preview image
             File::delete($flight->preview);
 
-            $preview = $request->file('preview');
-            $previewName = $preview->getClientOriginalName();
-
-            // generate new unique name for preview image
-            $previewName = $this->generateNameForPreview($previewName);
-
-            $request->file('preview')->move($destinationPath, $previewName);
-            $previewName = $destinationPath . '/' . $previewName;
+            // Move uploaded file
+            $previewName = $this->renameAndUploadImage($preview, $request, $destinationPath);
             $data['preview'] = $previewName;
         }
 
@@ -95,9 +83,10 @@ class adminController extends Controller
         $flight = Spaceships::find($id);
 
         File::delete($flight->preview); // delete preview image
-        $flight->delete();
 
+        $flight->delete();
         session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
+
         return redirect('admin');
     }
 
@@ -105,10 +94,21 @@ class adminController extends Controller
     // generate new unique name for preview image
     public function generateNameForPreview($previewName) {
         // generate hash for uniq image name
-        $hash = Hash::make('secret');
-        $hash = substr($hash, 0, 4);
+        $hash = str_random(4);
         $previewName = $hash . '_' . $previewName;
+
         return $previewName;
     }
 
+    public function renameAndUploadImage($preview, $request, $destinationPath) {
+        $previewName = $preview->getClientOriginalName();
+
+        // generate hash for uniq image name
+        $previewName = $this->generateNameForPreview($previewName);
+
+        $request->file('preview')->move($destinationPath, $previewName);
+        $previewName = $destinationPath . '/' . $previewName;
+
+        return $previewName;
+    }
 }
