@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" ng-app="app">
 <head>
     <title>Admin Panel</title>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <!-- FONT-AWESOME -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="{!! asset('css/admin.css') !!}" rel="stylesheet" />
+    <link href="{!! asset('adm-panel/css/style.css') !!}" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
@@ -29,6 +29,7 @@
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{!! asset('js/libs/bootstrap.min.js') !!}"></script>
-    <script src="{!! asset('build/js/global.min.js') !!}"></script>
+    <script src="{!! asset('bower/angular/angular.min.js') !!}"></script>
+    <script src="{!! asset('adm-panel/js/common.js') !!}"></script>
 </body>
 </html>

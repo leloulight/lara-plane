@@ -65,6 +65,18 @@ h1 {
     max-width: 300px;
 }
 
+.admin-carousel-container .form-group {
+    /*position: relative;*/
+}
+
+.add-image-form {
+    display: inline-block;
+    font-size: 25px;
+    color: forestgreen;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
 
 
 

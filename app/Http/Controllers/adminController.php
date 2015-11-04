@@ -12,23 +12,44 @@ use Illuminate\Support\Facades\Request;
 
 class adminController extends Controller
 {
+    public $destinationPath = 'uploads/spaceships'; // uploads folder
+
+
+    /**
+     * Show main Admin page
+     * @return View
+     */
     public function index() {
         $spaceships = Spaceships::latest('created_at')->paginate(5);
         return view('admin.index', compact('spaceships'));
     }
 
+
+    /**
+     * Show spaceship
+     * @param $id
+     * @return View
+     */
     public function show($id) {
         $spaceship = Spaceships::findOrFail($id);
         return view('admin.show', compact('spaceship'));
     }
 
+
+    /**
+     * @return View
+     */
     public function create() {
         return view('admin.create');
     }
 
-    // Add to db from the form
+
+    /**
+     * Add to db from the form
+     * @param SpaceshipRequest $request
+     * @return Redirect
+     */
     public function store(SpaceshipRequest $request) {
-        $destinationPath = 'uploads/spaceships'; // uploads folder
         $data = $request->all();
         $spaceships = new Spaceships($data);
 
@@ -37,8 +58,21 @@ class adminController extends Controller
             $preview = $request->file('preview');
 
             // Upload preview image
-            $previewName = $this->renameAndUploadImage($preview, $request, $destinationPath);
+            $previewName = $this->renameAndUploadImage($preview, $request);
             $spaceships['preview'] = $previewName;
+        }
+
+        // If has carousel image
+        if($request->hasFile('carousel')) {
+            $carouselArr = $request->file('carousel');
+            $carouselAllPath = '';
+
+            // upload carousel images
+            foreach($carouselArr as $key => $image) {
+                $imageName = $this->renameAndUploadImageCarousel($image, $key, $request);
+                $carouselAllPath .= $imageName . ';';
+            }
+            $spaceships['carousel'] =  $carouselAllPath;
         }
 
         $spaceships->save();
@@ -47,15 +81,43 @@ class adminController extends Controller
         return redirect('admin');
     }
 
+    /**
+     * @param $image
+     * @param $key
+     * @param $request
+     * @return string (full name of image)
+     */
+    public function renameAndUploadImageCarousel($image, $key, $request) {
+        $imageName = $image->getClientOriginalName();
+
+        // generate hash for uniq image name
+        $imageName = $this->generateNameForPreview($imageName);
+
+        $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
+        $imageName = $this->destinationPath . '/' . $imageName;
+
+        return $imageName;
+    }
+
+
+    /**
+     * Edit spaceship
+     * @param $id
+     * @return View
+     */
     public function edit($id) {
         $spaceships = Spaceships::findOrFail($id);
         return view('admin.edit', compact('spaceships'));
     }
 
 
+    /**
+     * Update spaceship
+     * @param $id
+     * @param SpaceshipRequest $request
+     * @return Redirect
+     */
     public function update($id, SpaceshipRequest $request) {
-        $destinationPath = 'uploads/spaceships'; // uploads folder
-
         $spaceships = new Spaceships();
         $flight = $spaceships->findOrFail($id);
 
@@ -69,7 +131,7 @@ class adminController extends Controller
             File::delete($flight->preview);
 
             // Move uploaded file
-            $previewName = $this->renameAndUploadImage($preview, $request, $destinationPath);
+            $previewName = $this->renameAndUploadImage($preview, $request);
             $data['preview'] = $previewName;
         }
 
@@ -79,6 +141,12 @@ class adminController extends Controller
         return redirect('admin');
     }
 
+
+    /**
+     * Delete spaceship
+     * @param $id
+     * @return Redirect
+     */
     public function destroy($id) {
         $flight = Spaceships::find($id);
 
@@ -91,7 +159,11 @@ class adminController extends Controller
     }
 
 
-    // generate new unique name for preview image
+    /**
+     * Generate new unique name for preview image
+     * @param $previewName
+     * @return string (name of preview image)
+     */
     public function generateNameForPreview($previewName) {
         // generate hash for uniq image name
         $hash = str_random(4);
@@ -100,15 +172,24 @@ class adminController extends Controller
         return $previewName;
     }
 
-    public function renameAndUploadImage($preview, $request, $destinationPath) {
+
+    /**
+     * Rename & upload image
+     * @param $preview
+     * @param $request
+     * @return string (full name)
+     */
+    public function renameAndUploadImage($preview, $request) {
         $previewName = $preview->getClientOriginalName();
 
         // generate hash for uniq image name
         $previewName = $this->generateNameForPreview($previewName);
 
-        $request->file('preview')->move($destinationPath, $previewName);
-        $previewName = $destinationPath . '/' . $previewName;
+        $request->file('preview')->move($this->destinationPath, $previewName);
+        $previewName = $this->destinationPath . '/' . $previewName;
 
         return $previewName;
     }
+
+
 }

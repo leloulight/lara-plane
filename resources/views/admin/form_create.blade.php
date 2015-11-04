@@ -5,9 +5,24 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('preivew', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::label('preview', 'Главное фото', ['class' => 'add_form__label']) !!}
     {!! Form::file('preview', null) !!}
 </div>
+
+<hr/>
+<h2>Карусель</h2>
+<div class="admin-carousel-container">
+    <div class="form-group">
+        {!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}
+        {!! Form::file('carousel[]', null) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}
+        {!! Form::file('carousel[]', null) !!}
+    </div>
+    <i class="fa fa-plus add-image-form"></i>
+</div>
+<hr/>
 
 <div class="form-group">
     {!! Form::label('assignment', 'Назначение', ['class' => 'add_form__label']) !!}
