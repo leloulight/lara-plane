@@ -11,16 +11,15 @@
 
 <hr/>
 <h2>Карусель</h2>
-<div class="admin-carousel-container">
-    <div class="form-group">
-        {!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}
-        {!! Form::file('carousel[]', null) !!}
+<div class="admin-carousel-container" ng-controller="CreateController">
+    <div class="form-group"  ng-repeat="val in fileFormList">
+        {{--{!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}--}}
+        {{--{!! Form::file('carousel[]', null) !!}--}}
+        <label for="@{{val.name}}" class="@{{val.class}}">Изображение для карусели</label>
+        <input name="@{{ val.name }}" type="file" id="@{{ val.name }}">
+
     </div>
-    <div class="form-group">
-        {!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}
-        {!! Form::file('carousel[]', null) !!}
-    </div>
-    <i class="fa fa-plus add-image-form"></i>
+    <i class="fa fa-plus add-image-form" ng-click="addCarouselField()"></i>
 </div>
 <hr/>
 
