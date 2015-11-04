@@ -7,7 +7,9 @@
 <div class="form-group">
     {!! Form::label('preivew', 'Главное фото', ['class' => 'add_form__label']) !!}
     {!! Form::file('preview', null) !!}
-    <img src="{!! asset($spaceships->preview) !!}" class="admin-form__img" alt=""/>
+    @if($spaceships->preview)
+        <img src="{!! asset($spaceships->preview) !!}" class="admin-form__img" alt=""/>
+    @endif
 </div>
 
 <div class="form-group">

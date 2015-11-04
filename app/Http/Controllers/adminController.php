@@ -61,9 +61,9 @@ class adminController extends Controller
             $previewName = $this->renameAndUploadImage($preview, $request);
             $spaceships['preview'] = $previewName;
         }
-
         // If has carousel image
         if($request->hasFile('carousel')) {
+
             $carouselArr = $request->file('carousel');
             $carouselAllPath = '';
 
@@ -73,6 +73,8 @@ class adminController extends Controller
                 $carouselAllPath .= $imageName . ';';
             }
             $spaceships['carousel'] =  $carouselAllPath;
+        } else {
+            $spaceships['carousel'] = '';
         }
 
         $spaceships->save();
@@ -80,25 +82,6 @@ class adminController extends Controller
 
         return redirect('admin');
     }
-
-    /**
-     * @param $image
-     * @param $key
-     * @param $request
-     * @return string (full name of image)
-     */
-    public function renameAndUploadImageCarousel($image, $key, $request) {
-        $imageName = $image->getClientOriginalName();
-
-        // generate hash for uniq image name
-        $imageName = $this->generateNameForPreview($imageName);
-
-        $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
-        $imageName = $this->destinationPath . '/' . $imageName;
-
-        return $imageName;
-    }
-
 
     /**
      * Edit spaceship
@@ -127,8 +110,7 @@ class adminController extends Controller
         // If has preview image
         if($request->hasFile('preview')) {
             $preview = $request->file('preview');
-            // delete old preview image
-            File::delete($flight->preview);
+            File::delete($flight->preview); // delete old preview image
 
             // Move uploaded file
             $previewName = $this->renameAndUploadImage($preview, $request);
@@ -158,6 +140,8 @@ class adminController extends Controller
         return redirect('admin');
     }
 
+
+//    FORM IMAGE METHODS
 
     /**
      * Generate new unique name for preview image
@@ -191,5 +175,21 @@ class adminController extends Controller
         return $previewName;
     }
 
+    /**
+     * @param $image
+     * @param $key
+     * @param $request
+     * @return string (full name of image)
+     */
+    public function renameAndUploadImageCarousel($image, $key, $request) {
+        $imageName = $image->getClientOriginalName();
 
+        // generate hash for uniq image name
+        $imageName = $this->generateNameForPreview($imageName);
+
+        $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
+        $imageName = $this->destinationPath . '/' . $imageName;
+
+        return $imageName;
+    }
 }
