@@ -66,7 +66,15 @@ h1 {
 }
 
 .admin-carousel-container .form-group {
-    /*position: relative;*/
+    position: relative;
+}
+.admin-carousel-container .delete-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    color: red;
+    cursor: pointer;
 }
 
 .add-image-form {
@@ -76,6 +84,7 @@ h1 {
     cursor: pointer;
     margin-bottom: 20px;
 }
+
 
 
 
