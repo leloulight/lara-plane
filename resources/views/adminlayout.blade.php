@@ -30,6 +30,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{!! asset('js/libs/bootstrap.min.js') !!}"></script>
     <script src="{!! asset('bower/angular/angular.min.js') !!}"></script>
+    <script src="{!! asset('adm-panel/js/create_controller.js') !!}"></script>
     <script src="{!! asset('adm-panel/js/common.js') !!}"></script>
 </body>
 </html>

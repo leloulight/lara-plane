@@ -90,7 +90,13 @@ class adminController extends Controller
      */
     public function edit($id) {
         $spaceships = Spaceships::findOrFail($id);
-        return view('admin.edit', compact('spaceships'));
+
+        // split carousel string
+        $carouselArr = explode(';', $spaceships->carousel);
+        // delete last empty ellement
+        array_pop($carouselArr);
+
+        return view('admin.edit', compact('spaceships', 'carouselArr'));
     }
 
 
@@ -101,6 +107,8 @@ class adminController extends Controller
      * @return Redirect
      */
     public function update($id, SpaceshipRequest $request) {
+
+        dd($request);
         $spaceships = new Spaceships();
         $flight = $spaceships->findOrFail($id);
 

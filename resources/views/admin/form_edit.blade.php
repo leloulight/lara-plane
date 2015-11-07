@@ -5,12 +5,32 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('preivew', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::label('preview', 'Главное фото', ['class' => 'add_form__label']) !!}
     {!! Form::file('preview', null) !!}
     @if($spaceships->preview)
         <img src="{!! asset($spaceships->preview) !!}" class="admin-form__img" alt=""/>
     @endif
 </div>
+
+
+<hr/>
+<h2>Карусель</h2>
+<div class="admin-carousel-container" ng-controller="CreateController">
+    @foreach($carouselArr as $url)
+        <div class="form-group">
+            {!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}
+            {!! Form::file('carousel[]', null) !!}
+            <i class="fa fa-times delete-image-ajax"></i>
+            <img src="{!! asset($url) !!}" alt=""/>
+        </div>
+
+    @endforeach
+        <i class="fa fa-plus add-image-form"></i>
+</div>
+<hr/>
+
+
+
 
 <div class="form-group">
     {!! Form::label('assignment', 'Назначение', ['class' => 'add_form__label']) !!}

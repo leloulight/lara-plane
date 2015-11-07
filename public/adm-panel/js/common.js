@@ -1,25 +1,21 @@
-var app = angular.module('app', []);
+$(function() {
 
-// Add new file input in form for carousel
-app.controller('CreateController', function($scope, $http) {
-    var fileFormId = 0;
-    $scope.fileFormList = [
-        {
-            "id": fileFormId,
-            "name":"carousel[]",
-            "class": "add_form__label " + fileFormId
-        }
-    ];
+    // Delete carousel image
+    $('.admin-carousel-container').on('click', '.delete-image-ajax', function() {
 
-    $scope.addCarouselField = function() {
-        fileFormId++;
-        $scope.fileFormList.push({"id": fileFormId,"name":'carousel[]', "class": "add_form__label"});
-    }
+        console.log('dwa');
+        $(this).closest('.form-group').remove();
+    });
 
-    $scope.delCarouselField = function(item) {
-        angular.forEach($scope.fileFormList, function (val, index) {
-            if (val.id === item.id)
-                $scope.fileFormList.splice(index, 1);
-        })
-    }
+    // Add new carousel image field
+    $('.add-image-form').on('click', function() {
+       var formGroup = "<div class='form-group'>" +
+        "<label for='carousel[]' class='add_form__label'>Изображение для карусели</label>" +
+        "<input name='carousel[]' type='file'' id='carousel[]'>" +
+        "<i class='fa fa-times delete-image-ajax'></i>" +
+        "</div>";
+
+        $('.admin-carousel-container .form-group:last').after(formGroup);
+    });
+
 });

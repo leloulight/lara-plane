@@ -68,7 +68,8 @@ h1 {
 .admin-carousel-container .form-group {
     position: relative;
 }
-.admin-carousel-container .delete-image {
+.admin-carousel-container .delete-image,
+.admin-carousel-container .delete-image-ajax {
     position: absolute;
     top: 0;
     right: 0;
