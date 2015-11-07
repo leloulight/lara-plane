@@ -8,17 +8,27 @@ $(function() {
 	var menu = $('.main-nav-container');
 
 	/* MAIN PAGE MASONRY */
-	var container = document.querySelector('.recent'),
-		msnry = new Masonry( container, {
-			columnWidth: 45,
-			gutter: 10,
-			itemSelector: 'recent__item',
-		});
+	var recent = document.querySelector('.recent');
 
-	imagesLoaded( container, function() {
-		msnry = new Masonry( container );
-	});
+    if(recent) {
+        var msnry = new Masonry( recent, {
+            columnWidth: 45,
+            gutter: 10,
+            itemSelector: 'recent__item',
+        });
 
+        imagesLoaded( recent, function() {
+            msnry = new Masonry( recent );
+        });
+    }
+
+
+    /* Float labels (contact page) */
+    if($('.float-label').length > 0) {
+        $('.float-label').floatLabels({
+            color: "#4961f5"
+        });
+    }
 	/**
 	***************************************************************
 	* =USABILLITY

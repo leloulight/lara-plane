@@ -2,10 +2,24 @@
 
 @section('content')
 	<h2>Контакты</h2>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">3232</div>
-			<div class="col-md-4">3232</div>
-		</div>
-	</div>
+    <h3>Отправить сообщение</h3>
+    <p>Все вопросы, пожелания касающиеся сайта, можно отправить мне на почту. Отвечу всем.</p>
+    {!! Form::open(array('url' => 'foo/bar', 'class' => 'contact-form')) !!}
+        <div class="float-label">
+            {!! Form::label('name', 'Имя', ['class' => 'contact-form__label']) !!}
+            {!! Form::text('name', null, ['class' => 'contact-form__text', 'placeholder' => 'Имя']) !!}
+        </div>
+
+        <div class="float-label">
+            {!! Form::label('email', 'Email', ['class' => 'contact-form__label']) !!}
+            {!! Form::email('email', null, ['class' => 'contact-form__text', 'placeholder' => 'Email']) !!}
+        </div>
+
+        <div class="float-label">
+            {!! Form::label('message', 'Сообщение', ['class' => 'contact-form__label']) !!}
+            {!! Form::textarea('message', null, ['class' => 'contact-form__text', 'placeholder' => 'Сообщение']) !!}
+        </div>
+
+    {!! Form::submit('Отправить', ['class' => 'btn']) !!}
+    {!! Form::close() !!}
 @stop
