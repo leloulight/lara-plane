@@ -7,7 +7,7 @@ app.controller('CreateController', function($scope, $http) {
         {
             "id": fileFormId,
             "name":"carousel[]",
-            "class": "add_form__label " + fileFormId
+            "class": "add_form__label"
         }
     ];
 

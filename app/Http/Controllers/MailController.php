@@ -32,7 +32,6 @@ class MailController extends Controller
             $message->to($mail_to, 'Laraplane')->subject($subject);
         });
 
-
         session()->flash('flash_message', 'Ваше сообщение отправлено!');
         return redirect()->back();
     }

@@ -8,11 +8,12 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use File; // for file deleting
 use Hash; // for random string generate for preview image name
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 
 class adminController extends Controller
 {
-    public $destinationPath = 'uploads/spaceships'; // uploads folder
+    public $destinationPath = 'uploads/spaceships/'; // File uploads folder
 
 
     /**
@@ -61,6 +62,7 @@ class adminController extends Controller
             $previewName = $this->renameAndUploadImage($preview, $request);
             $spaceships['preview'] = $previewName;
         }
+
         // If has carousel image
         if($request->hasFile('carousel')) {
 
@@ -72,6 +74,9 @@ class adminController extends Controller
                 $imageName = $this->renameAndUploadImageCarousel($image, $key, $request);
                 $carouselAllPath .= $imageName . ';';
             }
+
+            // Delete last char (Иначе трабл при удалении картинки)
+            $carouselAllPath = rtrim($carouselAllPath, ";");
             $spaceships['carousel'] =  $carouselAllPath;
         } else {
             $spaceships['carousel'] = '';
@@ -89,14 +94,15 @@ class adminController extends Controller
      * @return View
      */
     public function edit($id) {
-        $spaceships = Spaceships::findOrFail($id);
+        $spaceship = Spaceships::findOrFail($id);
 
-        // split carousel string
-        $carouselArr = explode(';', $spaceships->carousel);
-        // delete last empty ellement
-        array_pop($carouselArr);
+        if($spaceship->carousel) {
+            $carouselArr = explode(';', $spaceship->carousel);
+        } else {
+            $carouselArr = 0;
+        }
 
-        return view('admin.edit', compact('spaceships', 'carouselArr'));
+        return view('admin.edit', compact('spaceship', 'carouselArr'));
     }
 
 
@@ -108,7 +114,6 @@ class adminController extends Controller
      */
     public function update($id, SpaceshipRequest $request) {
 
-        dd($request);
         $spaceships = new Spaceships();
         $flight = $spaceships->findOrFail($id);
 
@@ -139,8 +144,7 @@ class adminController extends Controller
      */
     public function destroy($id) {
         $flight = Spaceships::find($id);
-
-        File::delete($flight->preview); // delete preview image
+        File::delete($this->destinationPath . $flight->preview); // delete preview image
 
         $flight->delete();
         session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
@@ -176,9 +180,7 @@ class adminController extends Controller
 
         // generate hash for uniq image name
         $previewName = $this->generateNameForPreview($previewName);
-
         $request->file('preview')->move($this->destinationPath, $previewName);
-        $previewName = $this->destinationPath . '/' . $previewName;
 
         return $previewName;
     }
@@ -196,8 +198,35 @@ class adminController extends Controller
         $imageName = $this->generateNameForPreview($imageName);
 
         $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
-        $imageName = $this->destinationPath . '/' . $imageName;
 
         return $imageName;
+    }
+
+    /**
+     * Delete carousel image
+     * @param $id
+     * @param $name
+     * @return mixed
+     */
+    public function deleteCarouselImage($id, $name) {
+        $carousel = Spaceships::where('id', $id)->pluck('carousel');
+
+        $carousel_arr = explode(';', $carousel);
+
+        foreach($carousel_arr as $key => $image) {
+            // Удаляем из массива
+            if($name === $image) {
+                array_splice($carousel_arr, $key, 1);
+                // Delete file
+                File::delete($this->destinationPath . $image);
+            }
+        }
+
+        $carousel = implode(';', $carousel_arr);
+
+        // Add to db
+        Spaceships::where('id', $id)->update(['carousel' => $carousel]);
+
+        return redirect()->back();
     }
 }

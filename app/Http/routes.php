@@ -16,6 +16,7 @@ Route::get('/', 'PagesController@index');
 
 // Admin panel
 Route::resource('admin', 'adminController');
+Route::get('admin/delete-image/{id}/{name}', 'adminController@deleteCarouselImage');
 
 // Spaceships
 Route::get('spaceships', 'spaceshipsController@index');
