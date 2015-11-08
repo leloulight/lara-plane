@@ -11,6 +11,7 @@
 |
 */
 
+// Main page
 Route::get('/', 'PagesController@index');
 
 // Admin panel
@@ -24,6 +25,11 @@ Route::get('spaceships/{id}', 'spaceshipsController@show');
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
+
+// Mail sending
+Route::post('contact/send', 'MailController@index');
+
+// Auth
 Route::controllers([
     "auth" => "Auth\AuthController",
     "password" => "Auth\PasswordController",

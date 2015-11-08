@@ -160,10 +160,10 @@ textarea {
     color: #6b6464;
 
     &:--link-effect {
-    background: rgba(0,0,0, .1);
-    border: 1px solid #B1B1B1;
-    color: #444;
-}
+        background: rgba(0,0,0, .1);
+        border: 1px solid #B1B1B1;
+        color: #444;
+    }
 }
 
 /**
@@ -191,4 +191,24 @@ textarea {
     -o-transition: top .2s linear;
     -ms-transition: top .2s linear;
     transition: top .2s linear;
+}
+
+// Errors and messages
+.alert {
+    padding: 9px 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }

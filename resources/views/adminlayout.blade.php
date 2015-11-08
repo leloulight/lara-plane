@@ -18,7 +18,7 @@
                 <header>
                     <a href="/admin/" class="admin-logo">ADMIN PANEL</a>
                 </header>
-                {{-- Message about added spaceship--}}
+                {{-- Message after successfuly added spaceship--}}
                 @include('partials.admin.flash')
 
                 @yield('content')
