@@ -15,7 +15,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="develop col-lg-6 col-md-4 col-sm-4 col-xs-14">
+            <div class="develop col-lg-6 col-md-4 col-sm-4 col-xs-24">
                 <p>Разработчик <a href="https://lollipopfly.github.io/" target="_blank" class="develop__link">lollipopfly.github.io</a></p>
             </div>
         </div>

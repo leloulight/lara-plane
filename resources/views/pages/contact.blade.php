@@ -11,8 +11,8 @@
         </div>
 
         <div class="float-label">
-            {!! Form::label('email', 'Email', ['class' => 'contact-form__label']) !!}
-            {!! Form::email('email', null, ['class' => 'contact-form__text', 'placeholder' => 'Email']) !!}
+            {!! Form::label('email', 'Email (Обязательное поле)', ['class' => 'contact-form__label']) !!}
+            {!! Form::email('email', null, ['class' => 'contact-form__text', 'placeholder' => 'Email*']) !!}
         </div>
 
         <div class="float-label">
@@ -20,6 +20,6 @@
             {!! Form::textarea('message', null, ['class' => 'contact-form__text', 'placeholder' => 'Сообщение']) !!}
         </div>
 
-    {!! Form::submit('Отправить', ['class' => 'btn']) !!}
+    {!! Form::submit('Отправить', ['class' => 'btn contact-form__btn']) !!}
     {!! Form::close() !!}
 @stop

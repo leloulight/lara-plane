@@ -326,21 +326,16 @@
 **/
 
 .contact-form {
+    width: 400px;
     margin-bottom: 20px;
     padding-top: 20px;
+    overflow: hidden;
 }
 
-textarea {
-    padding-top: 15px;
-    height: 140px;
+.contact-form__btn {
+    float: right;
 }
 
-.btn {
-    background: none;
-    outline: none;
-    border: 1px solid #CECECE;
-    padding: 10px 25px;
-}
 
 /**
 ***************************************************************
@@ -478,6 +473,10 @@ textarea {
 		margin-bottom: 15px;
 	}
 
+    .footer-nav__item {
+        margin-right: 37px;
+    }
+
 	.develop {
 		float: right;
 	}
@@ -534,6 +533,34 @@ textarea {
 	.footer-nav__link {
 		font-size: 14px;
 	}
+
+    .footer-nav__item {
+        margin-right: 10px;
+    }
+
+    /* Contact page */
+    .contact-form,
+    .contact-form__text {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    // Footer
+    .wrap {
+        margin-bottom: -230px;
+    }
+
+    .footer, .wrap:after {
+        padding-top: 15px;
+        height: 230px;
+    }
+
+    .footer-nav__item {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 320px) {
