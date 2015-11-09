@@ -113,9 +113,9 @@ class adminController extends Controller
      * @return Redirect
      */
     public function update($id, SpaceshipRequest $request) {
-
         $spaceships = new Spaceships();
         $flight = $spaceships->findOrFail($id);
+
 
         // Иначе не обновит
         $data = $request->all();
@@ -128,6 +128,35 @@ class adminController extends Controller
             // Move uploaded file
             $previewName = $this->renameAndUploadImage($preview, $request);
             $data['preview'] = $previewName;
+        }
+
+        // If has carousel image
+        if($request->hasFile('carousel')) {
+            $carousel_request = $request->file('carousel');
+
+            // Carousel Arr from DB
+            $carousel_arr = explode(';', $flight->carousel);
+
+            // Get uniq name of carousel
+            foreach($carousel_arr as $name) {
+                $carousel_arr_uniq[] = $this->getUniqCarouselName($name);
+            }
+
+            foreach($carousel_request as $key => $image) {
+                $imageName = $image->getClientOriginalName();
+                if(in_array($flight->carousel, $carousel_arr_uniq)) continue;
+
+                // generate hash for uniq image name
+                $imageName = $this->generateNameForPreview($imageName);
+
+                // Add to db fiel
+                $flight->carousel .= ';' . $imageName;
+
+                // Upload file
+                $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
+            }
+            // Add to data to update
+            $data['carousel'] =  $flight->carousel;
         }
 
         $flight->update($data);
@@ -145,6 +174,14 @@ class adminController extends Controller
     public function destroy($id) {
         $flight = Spaceships::find($id);
         File::delete($this->destinationPath . $flight->preview); // delete preview image
+
+        // Detele carousel images
+        if($flight->carousel) {
+            $carousel_arr = explode(';', $flight->carousel);
+            foreach($carousel_arr as $image) {
+                File::delete($this->destinationPath . $image); // delete preview image
+            }
+        }
 
         $flight->delete();
         session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
@@ -185,6 +222,7 @@ class adminController extends Controller
         return $previewName;
     }
 
+
     /**
      * @param $image
      * @param $key
@@ -202,6 +240,7 @@ class adminController extends Controller
         return $imageName;
     }
 
+
     /**
      * Delete carousel image
      * @param $id
@@ -214,7 +253,7 @@ class adminController extends Controller
         $carousel_arr = explode(';', $carousel);
 
         foreach($carousel_arr as $key => $image) {
-            // Удаляем из массива
+            // Delete from arr
             if($name === $image) {
                 array_splice($carousel_arr, $key, 1);
                 // Delete file
@@ -229,4 +268,17 @@ class adminController extends Controller
 
         return redirect()->back();
     }
+
+
+    /** Get uniq name of carousel image from DB
+     * @param $name
+     * @return string
+     */
+    public function getUniqCarouselName($name) {
+        $name = substr($name, 5);
+        return $name;
+    }
 }
+
+
+

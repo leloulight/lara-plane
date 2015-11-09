@@ -77,7 +77,8 @@ h1 {
     cursor: pointer;
 }
 
-.add-image-form {
+.add-image-form,
+.add-carousel{
     display: inline-block;
     font-size: 25px;
     color: forestgreen;

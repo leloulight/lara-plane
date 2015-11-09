@@ -27,7 +27,7 @@
 
     @endforeach
     @endif
-        <i class="fa fa-plus add-image-form"></i>
+        <i class="fa fa-plus add-carousel"></i>
 </div>
 <hr/>
 
