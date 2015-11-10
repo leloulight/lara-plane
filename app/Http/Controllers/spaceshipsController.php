@@ -30,6 +30,12 @@ class spaceshipsController extends Controller
     {
         $spaceship = Spaceships::findOrFail($id);
 
-        return view('spaceships.show', compact('spaceship'));
+        // Split carousel string
+        $carousel = explode(';', $spaceship->carousel);
+
+        // Real or Not
+        $spaceship->real = ($spaceship->real ? 'Да' : 'Нет');
+
+        return view('spaceships.show', compact('spaceship', 'carousel'));
     }
 }

@@ -8,7 +8,7 @@
     {!! Form::label('preview', 'Главное фото', ['class' => 'add_form__label']) !!}
     {!! Form::file('preview', null) !!}
     @if($spaceship->preview)
-        <img src="{!! asset($spaceship->preview) !!}" class="admin-form__img" alt=""/>
+        <img src="/uploads/spaceships/{!! $spaceship->preview !!}" class="admin-form__img" alt=""/>
     @endif
 </div>
 

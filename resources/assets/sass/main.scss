@@ -70,7 +70,6 @@ $helvetica: "HelveticaNeue", Arial, sans-serif;
 	line-height: 0;
 	clear: both;
 	visibility: hidden;
-	display: inline-block;
 }
 
 
@@ -80,8 +79,9 @@ html, body {
 }
 
 body {
-	font-family: $helvetica;
-	background:#F4F4F4;
+    font-family: $helvetica;
+    //	background:#F4F4F4;
+    background: $white;
 }
 
 .wrap {
