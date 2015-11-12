@@ -2,9 +2,11 @@
 
 @section('content')
     <div class="row">
-        <div class="detail-image-container col-md-24">
-            <img src="http://lorempixel.com/1160/300/" alt=""/>
-        </div>
+        @if($spaceship->detail_image)
+            <div class="detail-image-container col-md-24">
+                <img src="/uploads/spaceships/{!! $spaceship->detail_image !!}" alt=""/>
+            </div>
+        @endif
 
         <div class="detail-container col-md-24">
             <div class="row">

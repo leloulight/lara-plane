@@ -54,13 +54,16 @@ class adminController extends Controller
         $data = $request->all();
         $spaceships = new Spaceships($data);
 
+        // If has detail image
+        if($request->hasFile('detail_image')) {
+            $detail_image = $this->UploadImage($request, $request->file('detail_image'), 'detail_image');
+            $spaceships['detail_image'] = $detail_image;
+        }
+
         // If has preview image
         if($request->hasFile('preview')) {
-            $preview = $request->file('preview');
-
-            // Upload preview image
-            $previewName = $this->renameAndUploadImage($preview, $request);
-            $spaceships['preview'] = $previewName;
+            $preview = $this->UploadImage($request, $request->file('preview'), 'preview');
+            $spaceships['preview'] = $preview;
         }
 
         // If has carousel image
@@ -87,6 +90,14 @@ class adminController extends Controller
 
         return redirect('admin');
     }
+
+
+    public function UploadImage($request, $image, $mode) {
+        // Upload preview image
+        $image_name = $this->renameAndUploadImage($image, $request, $mode);
+        return $image_name;
+    }
+
 
     /**
      * Edit spaceship
@@ -116,19 +127,29 @@ class adminController extends Controller
         $spaceships = new Spaceships();
         $flight = $spaceships->findOrFail($id);
 
-
         // Иначе не обновит
         $data = $request->all();
 
+        // If has detail image
+        if($request->hasFile('detail_image')) {
+            // Upload new file
+            $detailName = $this->UploadImage($request, $request->file('detail_image'), 'detail_image');
+
+            $r = File::delete($this->destinationPath . $flight->detail_image); // delete old preview image
+            $data['detail_image'] = $detailName;
+        }
+
+
         // If has preview image
         if($request->hasFile('preview')) {
-            $preview = $request->file('preview');
-            File::delete($flight->preview); // delete old preview image
+            // Upload new file
+            $previewName = $this->UploadImage($request, $request->file('preview'), 'preview');
 
-            // Move uploaded file
-            $previewName = $this->renameAndUploadImage($preview, $request);
+            File::delete($this->destinationPath . $flight->preview); // delete old preview image
             $data['preview'] = $previewName;
         }
+
+
 
         // If has carousel image
         if($request->hasFile('carousel')) {
@@ -173,8 +194,6 @@ class adminController extends Controller
             $data['carousel'] =  $flight->carousel;
         }
 
-//        dd($data['carousel']);
-
         $flight->update($data);
         session()->flash('flash_message', 'Корабль обновлен.');
 
@@ -189,7 +208,16 @@ class adminController extends Controller
      */
     public function destroy($id) {
         $flight = Spaceships::find($id);
-        File::delete($this->destinationPath . $flight->preview); // delete preview image
+
+        // Delete detail image
+        if($flight->detail_image) {
+            File::delete($this->destinationPath . $flight->detail_image);
+        }
+
+        // delete preview image
+        if($flight->preview) {
+            File::delete($this->destinationPath . $flight->preview);
+        }
 
         // Detele carousel images
         if($flight->carousel) {
@@ -228,12 +256,12 @@ class adminController extends Controller
      * @param $request
      * @return string (full name)
      */
-    public function renameAndUploadImage($preview, $request) {
+    public function renameAndUploadImage($preview, $request, $mode) {
         $previewName = $preview->getClientOriginalName();
 
         // generate hash for uniq image name
         $previewName = $this->generateNameForPreview($previewName);
-        $request->file('preview')->move($this->destinationPath, $previewName);
+        $request->file($mode)->move($this->destinationPath, $previewName);
 
         return $previewName;
     }

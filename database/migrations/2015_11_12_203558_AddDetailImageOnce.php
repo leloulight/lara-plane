@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDetailImageToSpaceships extends Migration
+class AddDetailImageOnce extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,6 @@ class AddDetailImageToSpaceships extends Migration
     {
         Schema::table('spaceships', function (Blueprint $table) {
             $table->string('detail_image')->after('preview');
-
         });
     }
 

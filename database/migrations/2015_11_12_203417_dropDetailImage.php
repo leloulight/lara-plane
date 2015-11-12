@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDetailImageToSpaceships extends Migration
+class DropDetailImage extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class AddDetailImageToSpaceships extends Migration
     public function up()
     {
         Schema::table('spaceships', function (Blueprint $table) {
-            $table->string('detail_image')->after('preview');
-
+            $table->dropColumn('detail-image');
         });
     }
 
@@ -26,7 +25,7 @@ class AddDetailImageToSpaceships extends Migration
     public function down()
     {
         Schema::table('spaceships', function (Blueprint $table) {
-            $table->dropColumn('detail_image');
+            $table->dropColumn('detail-image');
         });
     }
 }

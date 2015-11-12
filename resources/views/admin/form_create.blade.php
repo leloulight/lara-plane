@@ -5,7 +5,12 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('preview', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::label('detail_image', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::file('detail_image', null) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('preview', 'Фото анонса', ['class' => 'add_form__label']) !!}
     {!! Form::file('preview', null) !!}
 </div>
 

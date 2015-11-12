@@ -5,7 +5,16 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('preview', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::label('detail_image', 'Главное фото', ['class' => 'add_form__label']) !!}
+    {!! Form::file('detail_image', null) !!}
+
+    @if($spaceship->detail_image)
+        <img src="/uploads/spaceships/{!! $spaceship->detail_image !!}" class="admin-form__img" alt=""/>
+    @endif
+</div>
+
+<div class="form-group">
+    {!! Form::label('preview', 'Фото анонса', ['class' => 'add_form__label']) !!}
     {!! Form::file('preview', null) !!}
     @if($spaceship->preview)
         <img src="/uploads/spaceships/{!! $spaceship->preview !!}" class="admin-form__img" alt=""/>
@@ -20,7 +29,6 @@
     @foreach($carouselArr as $url)
         <div class="form-group">
             {!! Form::label('carousel[]', 'Изображение для карусели', ['class' => 'add_form__label']) !!}
-            {{--{!! Form::file('carousel[]', null) !!}--}}
             <a href="/admin/delete-image/{!! $spaceship->id !!}/{!! $url !!}">Удалить<i class="fa fa-times"></i></a>
             <img src="/uploads/spaceships/{!! $url !!}" alt=""/>
         </div>

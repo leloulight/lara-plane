@@ -251,6 +251,11 @@
 }
 .detail-image-container {
     margin-bottom: 20px;
+    text-align: center;
+
+    img {
+        max-height: 300px;
+    }
 }
 
 .detail__name {
