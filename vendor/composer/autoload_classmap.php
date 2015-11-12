@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddCarouselFeldToSpaceships' => $baseDir . '/database/migrations/2015_11_04_120647_addCarouselFeldToSpaceships.php',
+    'AddDetailImageToSpaceships' => $baseDir . '/database/migrations/2015_11_12_200558_addDetailImageToSpaceships.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateSpaceshipsTable' => $baseDir . '/database/migrations/2015_10_05_224235_create_spaceships_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
