@@ -6,24 +6,32 @@
             <img src="http://lorempixel.com/1160/300/" alt=""/>
         </div>
 
-        <div class="col-md-24">
+        <div class="detail-container col-md-24">
             <div class="row">
-                <div class="detail col-md-17">
+                <div class="detail col-md-17 col-sm-15">
                     <h4 class="detail__name">{!! $spaceship->name !!}</h4>
                     <p class="detail__text">{!! $spaceship->description !!}</p>
                     
                     <div class="detail-carousel">
                         @foreach($carousel as $image)
-                            <img src="/uploads/spaceships/{!! $image !!}" alt=""/>
+                            <a href="/uploads/spaceships/{!! $image !!}" class="detail-carousel__container">
+                                <img class="detail-carousel__item" src="/uploads/spaceships/{!! $image !!}" alt=""/>
+                            </a>
                         @endforeach
                     </div>
 
-                    <div class="video">
-                        place for Video from Youtube
-                    </div>
+                    @if($spaceship->video)
+                        <div class="video">
+                            <iframe width="100%" height="350" src="{!! $spaceship->video !!}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    @endif
+
                 </div>
-                <div class="detail-sidebar col-md-7">
-                    <div class="detail-social-share">social share</div>
+                <div class="detail-sidebar col-md-7 col-sm-9">
+                    {{--Social share--}}
+                    <div class="detail-social-share">
+                        <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>
+                    </div>
                     <ul class="prop-list">
                         <li class="prop-list__item">Реальный <span class="prop-list__prop">{!! $spaceship->real !!}</span></li>
                         <li class="prop-list__item">Назначение <span class="prop-list__prop">{!! $spaceship->assignment !!}</span></li>

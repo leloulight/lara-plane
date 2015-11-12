@@ -23,6 +23,8 @@
     "masonry": "~3.3.2"
   },
   "devDependencies": {
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "slick-carousel": "~1.5.8",
+    "magnific-popup": "~1.0.0"
   }
 }

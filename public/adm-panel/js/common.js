@@ -6,7 +6,8 @@ $(function() {
         console.log('dwa');
         $(this).closest('.form-group').remove();
     });
-    //
+
+
     // Add new carousel image field
     $('.add-carousel').on('click', function() {
        var formGroup = "<div class='form-group'>" +
@@ -15,7 +16,7 @@ $(function() {
         "<i class='fa fa-times delete-image'></i>" +
         "</div>";
 
-        $('.admin-carousel-container .form-group:last').after(formGroup);
+        $('.admin-carousel-container .add-carousel').before(formGroup);
     });
 
 });

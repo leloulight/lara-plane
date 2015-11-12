@@ -1,6 +1,8 @@
 @import "reset.scss";
 @import "bootstrap.scss";
 @import "main.scss";
+@import 'slick.scss';
+@import 'slick-theme.scss';
 
 /**
 ***************************************************************
@@ -244,6 +246,9 @@
 * =DETAIL PAGE
 ***************************************************************
 **/
+.detail-container {
+    padding-bottom: 40px;
+}
 .detail-image-container {
     margin-bottom: 20px;
 }
@@ -279,6 +284,39 @@
     font-size: 18px;
     font-weight: 400;
 }
+
+/* Detail carousel */
+
+.detail-carousel {
+    width: 80%;
+    margin: 0 auto;
+
+    .slick-next:before,
+    .slick-prev:before {
+        font-family: FontAwesome;
+        position: absolute;
+        top: -50px;
+        color: #9B9B9B;
+        font-size: 100px;
+    }
+
+    .slick-next:before {
+        content: '\f105';
+        left: 25px;
+    }
+
+    .slick-prev:before {
+        content: "\f104";
+        left: -25px;
+    }
+}
+
+.detail-carousel__container {
+    outline: none !important;
+    padding: 10px;
+}
+
+
 
 
 
@@ -432,7 +470,7 @@
 }
 
 // fix hidden menu
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
 	h3 {
 		font-size: 25px;
 	}
@@ -442,7 +480,7 @@
 	}
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991px) {
 	// Main nav
 	.main-nav-container {
 		position: fixed;
@@ -500,9 +538,24 @@
 	.footer-nav__link {
 		font-size: 16px;
 	}
+
+    /* Detail page */
+    .prop-list__item {
+        font-size: 16px;
+    }
+
+    .prop-list__prop {
+        font-size: 17px;
+    }
+
+    .detail-carousel .slick-next:before,
+    .detail-carousel .slick-prev:before {
+        font-size: 65px;
+    }
+
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	/* footer */
 	.wrap {
 		margin-bottom: -190px;
@@ -523,6 +576,20 @@
 	.develop {
 		float: right;
 	}
+
+    /* Detail page */
+    .detail__name {
+        margin-bottom: 5px;
+        font-size: 40px;
+    }
+
+    .detail-social-share {
+        margin-bottom: 20px;
+    }
+
+    .video {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 681px) {

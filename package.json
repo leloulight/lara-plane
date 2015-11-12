@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "laravel-elixir": "^3.2.8",
     "laravel-elixir-livereload": "^1.1.2",

@@ -9,15 +9,16 @@ var gulp = require('gulp'),
 	merge = require('merge-stream'),
 	size = require('postcss-size'),
 	plumber = require('gulp-plumber'),
+    notify = require("gulp-notify"),
 	elixir = require('laravel-elixir'),
 	bower = 'public/bower/'; // bower directory
 
-
 // Laravel livereload
 require('laravel-elixir-livereload');
-elixir(function(mix) {
-   mix.livereload();
+    elixir(function(mix) {
+       mix.livereload();
 });
+
 
 /*------------------------------------*\
     TASKS
@@ -25,18 +26,19 @@ elixir(function(mix) {
 
 // Sass
 gulp.task('sass', function() {
-	var processors = [
+    var processors = [
 			size,
 			autoprefixer({ browsers: ['last 20 versions'] }),
 			require('postcss-font-magician')({}),
 			selectors,
 		];
-
-	return gulp.src('resources/assets/sass/style.scss')
-		.pipe(plumber())
-		.pipe(sass({outputStyle: 'compressed'}))
-		.pipe(postcss(processors))
-		.pipe(gulp.dest('public/build/css/'));
+    return gulp.src(['public/bower/magnific-popup/dist/magnific-popup.css',
+        'resources/assets/sass/style.scss'])
+        .pipe(plumber())
+        .pipe(concat('style.css'))
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(postcss(processors))
+        .pipe(gulp.dest('public/build/css/'));
 });
 
 // Sprites
@@ -63,6 +65,8 @@ gulp.task('compress', function() {
                     'public/js/libs/floatlabels.js',
                     'public/bower/masonry/dist/masonry.pkgd.min.js',
                     'public/bower/imagesloaded/imagesloaded.js',
+                    'public/js/libs/slick.js',
+                    'public/bower/magnific-popup/dist/jquery.magnific-popup.min.js',
 
                     'public/js/common.js'])
     .pipe(plumber())
@@ -73,14 +77,19 @@ gulp.task('compress', function() {
 
 // Watch
 gulp.task('watch', function() {
-	gulp.watch('resources/assets/sass/style.scss', { interval: 500 }, ['sass']);
-	gulp.watch('public/js/common.js', { interval: 500 }, ['compress']);
+	gulp.watch('resources/assets/sass/*.scss', { interval: 500 }, ['sass', 'notify']);
+	gulp.watch('public/js/common.js', { interval: 500 }, ['compress', 'notify']);
 	// gulp.watch('images/main/*.png', { interval: 500 }, ['sprite']);
 });
 
 // Default task
 gulp.task('default', ['sass', 'watch', 'compress']);
 
+gulp.task('notify', function() {
+    var date = new Date();
+    gulp.src("public/build/css/*.css")
+    .pipe(notify("Css was compiled! at " + date));
+});
 
 
 

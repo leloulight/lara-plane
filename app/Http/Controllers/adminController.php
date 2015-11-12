@@ -137,27 +137,43 @@ class adminController extends Controller
             // Carousel Arr from DB
             $carousel_arr = explode(';', $flight->carousel);
 
-            // Get uniq name of carousel
-            foreach($carousel_arr as $name) {
-                $carousel_arr_uniq[] = $this->getUniqCarouselName($name);
-            }
+            // If carousel from DB not empty
+            if($carousel_arr[0] !== "") {
+                // Get uniq name of carousel
+                foreach($carousel_arr as $name) {
+                    $carousel_arr_uniq[] = $this->getUniqCarouselName($name);
+                }
 
-            foreach($carousel_request as $key => $image) {
-                $imageName = $image->getClientOriginalName();
-                if(in_array($flight->carousel, $carousel_arr_uniq)) continue;
+                foreach($carousel_request as $key => $image) {
+                    $imageName = $image->getClientOriginalName();
+                    if(in_array($flight->carousel, $carousel_arr_uniq)) continue;
 
-                // generate hash for uniq image name
-                $imageName = $this->generateNameForPreview($imageName);
+                    // generate hash for uniq image name
+                    $imageName = $this->generateNameForPreview($imageName);
+                    // Add to db fiel
+                    $flight->carousel .= ';' . $imageName;
+                    // Upload file
+                    $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
+                }
+            } else {
+                foreach($carousel_request as $key => $image) {
+                    $imageName = $image->getClientOriginalName();
+                    // generate hash for uniq image name
+                    $imageName = $this->generateNameForPreview($imageName);
+                    // Add to db field
+                    $flight->carousel .= ';' . $imageName;
+                    // Upload file
+                    $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
+                }
 
-                // Add to db fiel
-                $flight->carousel .= ';' . $imageName;
-
-                // Upload file
-                $request->file('carousel')[$key]->move($this->destinationPath, $imageName);
+                // Delete first char (Иначе трабл при удалении картинки)
+                $flight->carousel = ltrim($flight->carousel, ";");
             }
             // Add to data to update
             $data['carousel'] =  $flight->carousel;
         }
+
+//        dd($data['carousel']);
 
         $flight->update($data);
         session()->flash('flash_message', 'Корабль обновлен.');
