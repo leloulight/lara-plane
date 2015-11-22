@@ -90,31 +90,28 @@ $(function() {
         };
     };
 
+    $.getJSON( "files/spaceships.json", function( data ) {
+        var spaceshipNames = new Array();
+        $.each( data, function ( index, product )
+        {
+            spaceshipNames.push( product.name );
+        } );
 
-    $.get( "/resources/files/spaceships.json", function( data ) {
-        console.log(data);
-        //$.each( data, function( key, val ) {
-        //    items.push( "<li id='" + key + "'>" + val + "</li>" );
-        //});
+        $('.search__input').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                name: 'spaceships',
+                source: substringMatcher(spaceshipNames)
+            });
     });
 
-    //var productNames = new Array();
-    //var productIds = new Object();
-    //$.each( spaceships, function ( index, product )
-    //{
-    //    productNames.push( product.name );
-    //    productIds[product.name] = product.id;
-    //} );
-    //
-    //$('.search__input').typeahead({
-    //        hint: true,
-    //        highlight: true,
-    //        minLength: 1
-    //    },
-    //    {
-    //        name: 'spaceships',
-    //        source: substringMatcher(productNames)
-    //    });
+
+
+
+
 
 
 

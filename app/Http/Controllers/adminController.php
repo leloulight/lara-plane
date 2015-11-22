@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Request;
 class adminController extends Controller
 {
     public $destinationPath = 'uploads/spaceships/'; // File uploads folder
-    public $spaceships_json_file = '../resources/files/spaceships.json'; // json file for search
+    public $spaceships_json_file = 'files/spaceships.json'; // json file for search
 
 
     /**
