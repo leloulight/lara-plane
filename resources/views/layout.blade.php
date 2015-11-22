@@ -19,10 +19,10 @@
 
 			<div class="row">
 				<div class="col-md-24">
-					<form action="#" class="search">
+					<form action="search/" class="search">
 						<p class="search__desc">Найти космический корабль по названию</p>
 						<div class="search-input-container">
-							<input type="text" class="search__input" placeholder="Название корабля">
+							<input type="text" name="name" class="search__input" placeholder="Название корабля">
 							<button type="submit" class="search__submit fa fa-search"></button>
 							<span class="search__arrow"></span>
 						</div>

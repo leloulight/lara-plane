@@ -103,7 +103,7 @@ class adminController extends Controller
      * @param $id
      * @return View
      */
-    public function edit($id) {
+        public function edit($id) {
         $spaceship = Spaceships::findOrFail($id);
 
         if($spaceship->carousel) {

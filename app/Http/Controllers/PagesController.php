@@ -22,4 +22,16 @@ class PagesController extends Controller
     public function contact() {
     	return view('pages.contact');
     }
+
+    public function search(Request $request) {
+        $name = $request->input('name');
+        $spaceships = Spaceships::select('id', 'name')->where('name', 'LIKE', '%' . $name . '%')->paginate(3);
+
+        foreach($spaceships as $value) {
+            if($name === $value->name) {
+                return redirect('spaceships/' . $value->id);
+            }
+        }
+        return view('pages.search', compact('spaceships'));
+    }
 }

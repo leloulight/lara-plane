@@ -173,10 +173,6 @@
 	padding-right: 50px;
     font-size: 21px;
 	border: 1px solid #CECECE;
-
-//	&:focus {
-//		border: 1px solid #979797;
-//	}
 }
 
 .search__submit {
@@ -464,6 +460,24 @@
 .contact-form__btn {
     float: right;
 }
+
+/**
+***************************************************************
+* =SEARCH PAGE
+***************************************************************
+**/
+
+.search-list {
+    margin-bottom: 40px;
+}
+.search-list__item {
+    margin-bottom: 10px;
+}
+
+.search-list__link {
+    font-size: 18px;
+}
+
 
 
 /**
