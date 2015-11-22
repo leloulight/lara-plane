@@ -23,7 +23,6 @@ Route::get('spaceships', 'spaceshipsController@index');
 Route::get('spaceships/{id}', 'spaceshipsController@show');
 
 // Pages
-Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 Route::get('search', 'PagesController@search');
 
