@@ -71,6 +71,54 @@ $(function() {
             color: "#4961f5"
         });
     }
+
+
+
+    /* Typehead Autocomplete */
+    var substringMatcher = function(strs) {
+        return function findMatches(q, cb) {
+            var matches, substringRegex;
+            matches = [];
+            substrRegex = new RegExp(q, 'i');
+
+            $.each(strs, function(i, str) {
+                if (substrRegex.test(str)) {
+                    matches.push(str);
+                }
+            });
+            cb(matches);
+        };
+    };
+
+
+    $.get( "/resources/files/spaceships.json", function( data ) {
+        console.log(data);
+        //$.each( data, function( key, val ) {
+        //    items.push( "<li id='" + key + "'>" + val + "</li>" );
+        //});
+    });
+
+    //var productNames = new Array();
+    //var productIds = new Object();
+    //$.each( spaceships, function ( index, product )
+    //{
+    //    productNames.push( product.name );
+    //    productIds[product.name] = product.id;
+    //} );
+    //
+    //$('.search__input').typeahead({
+    //        hint: true,
+    //        highlight: true,
+    //        minLength: 1
+    //    },
+    //    {
+    //        name: 'spaceships',
+    //        source: substringMatcher(productNames)
+    //    });
+
+
+
+
 	/**
 	***************************************************************
 	* =USABILLITY

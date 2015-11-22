@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Request;
 class adminController extends Controller
 {
     public $destinationPath = 'uploads/spaceships/'; // File uploads folder
+    public $spaceships_json_file = '../resources/files/spaceships.json'; // json file for search
 
 
     /**
@@ -85,18 +86,16 @@ class adminController extends Controller
             $spaceships['carousel'] = '';
         }
 
+        // Create json file for search
+        $this->createJsonFile($spaceships->name);
+
+
         $spaceships->save();
         session()->flash('flash_message', 'Корабль добавлен в базу.');
 
         return redirect('admin');
     }
 
-
-    public function UploadImage($request, $image, $mode) {
-        // Upload preview image
-        $image_name = $this->renameAndUploadImage($image, $request, $mode);
-        return $image_name;
-    }
 
 
     /**
@@ -150,7 +149,6 @@ class adminController extends Controller
         }
 
 
-
         // If has carousel image
         if($request->hasFile('carousel')) {
             $carousel_request = $request->file('carousel');
@@ -194,11 +192,16 @@ class adminController extends Controller
             $data['carousel'] =  $flight->carousel;
         }
 
+        // Update Json file
+        $this->updateJsonFile($flight->name, $data['name']);
+
+
         $flight->update($data);
         session()->flash('flash_message', 'Корабль обновлен.');
 
         return redirect('admin');
     }
+
 
 
     /**
@@ -227,6 +230,9 @@ class adminController extends Controller
             }
         }
 
+        // delete Json file
+        $this->deleteJsonFile($flight->name);
+
         $flight->delete();
         session()->flash('flash_message', 'Корабль ' . $flight->name . ' был удален!');
 
@@ -234,7 +240,7 @@ class adminController extends Controller
     }
 
 
-//    FORM IMAGE METHODS
+ //    FORM IMAGE METHODS
 
     /**
      * Generate new unique name for preview image
@@ -248,6 +254,22 @@ class adminController extends Controller
 
         return $previewName;
     }
+
+
+
+    /**
+     * Upload image
+     * @param $request
+     * @param $image
+     * @param $mode
+     * @return string (name of image)
+     */
+    public function UploadImage($request, $image, $mode) {
+        // Upload preview image
+        $image_name = $this->renameAndUploadImage($image, $request, $mode);
+        return $image_name;
+    }
+
 
 
     /**
@@ -321,6 +343,77 @@ class adminController extends Controller
     public function getUniqCarouselName($name) {
         $name = substr($name, 5);
         return $name;
+    }
+
+
+
+    /**
+     * Create Json file for search
+     * @param $spaceship_name
+     */
+    public function createJsonFile($spaceship_name) {
+        if($f = fopen($this->spaceships_json_file, "a+")) {
+            // get the file
+            $json_data = file_get_contents($this->spaceships_json_file);
+            if(empty($json_data)) {
+                $arr['name'] = $spaceship_name;
+                $json_data[] = $arr;
+            } else {
+                $json_data = json_decode($json_data, true);
+                $arr['name'] = $spaceship_name;
+                $json_data[] = $arr;
+            }
+
+            $json_data = json_encode($json_data);
+            file_put_contents($this->spaceships_json_file, $json_data);
+        }
+    }
+
+
+
+    /**
+     * Update Json file for search
+     * @param $old_name
+     * @param $new_name
+     */
+    public function updateJsonFile($old_name, $new_name){
+        if($f = fopen($this->spaceships_json_file, "a+")) {
+            // get the file
+            $json_data = file_get_contents($this->spaceships_json_file);
+            $json_data = json_decode($json_data, true);
+
+            // change array
+            foreach($json_data as &$value) {
+                if($old_name === $value['name']) {
+                    $value['name'] = $new_name;
+                }
+            }
+
+            $json_data = json_encode($json_data);
+            file_put_contents($this->spaceships_json_file, $json_data);
+        }
+    }
+
+
+    /**
+     * Delete Json file for search
+     * @param $name
+     */
+    public function deleteJsonFile($name) {
+        if($f = fopen($this->spaceships_json_file, "a+")) {
+            // get the file
+            $json_data = file_get_contents($this->spaceships_json_file);
+            $json_data = json_decode($json_data, true);
+
+            // search name array
+            foreach($json_data as $key => $value) {
+                if($name === $value['name']) {
+                    unset($json_data[$key]);
+                }
+            }
+            $json_data = json_encode($json_data);
+            file_put_contents($this->spaceships_json_file, $json_data);
+        }
     }
 }
 

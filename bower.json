@@ -25,6 +25,7 @@
   "devDependencies": {
     "jquery": "~2.1.4",
     "slick-carousel": "~1.5.8",
-    "magnific-popup": "~1.0.0"
+    "magnific-popup": "~1.0.0",
+    "typeahead.js": "typehead.js#~0.11.1"
   }
 }

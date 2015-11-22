@@ -67,6 +67,7 @@ gulp.task('compress', function() {
                     'public/bower/imagesloaded/imagesloaded.js',
                     'public/js/libs/slick.js',
                     'public/bower/magnific-popup/dist/jquery.magnific-popup.min.js',
+                    'public/bower/typeahead.js/dist/typeahead.jquery.min.js',
 
                     'public/js/common.js'])
     .pipe(plumber())
