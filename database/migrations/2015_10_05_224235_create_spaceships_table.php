@@ -20,7 +20,7 @@ class CreateSpaceshipsTable extends Migration
             $table->string('assignment');
             $table->boolean('real');
             $table->text('description');
-            $table->string('meta-description');
+            $table->string('meta_desc');
             $table->string('country');
             $table->string('video');
             $table->integer('cost');

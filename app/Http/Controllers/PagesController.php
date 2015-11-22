@@ -13,12 +13,14 @@ class PagesController extends Controller
         $spaceships = Spaceships::latest('created_at')->paginate(10);
 
         $meta_title = 'Космические корабли';
-        return view('home', compact('spaceships', 'meta_title'));
+        $meta_desc = "Найти космический корабль по названию";
+        return view('home', compact('spaceships', 'meta_title', 'meta_desc'));
     }
 
     public function contact() {
         $meta_title = 'Контакты';
-    	return view('pages.contact', compact('meta_title'));
+        $meta_desc = 'Свяжитесь с нами через форму контактов';
+    	return view('pages.contact', compact('meta_title', 'meta_desc'));
     }
 
     public function search(Request $request) {
@@ -37,6 +39,7 @@ class PagesController extends Controller
         }
 
         $meta_title = 'Поиск по сайту';
-        return view('pages.search', compact('spaceships', 'meta_title'));
+        $meta_desc = 'Найти космический корабль по названию';
+        return view('pages.search', compact('spaceships', 'meta_title', 'meta_desc'));
     }
 }

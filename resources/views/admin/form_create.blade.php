@@ -43,8 +43,8 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('meta-description', 'meta-описание', ['class' => 'add_form__label']) !!}
-    {!! Form::text('meta-description', null, ['class' => 'add-form__input form-control']) !!}
+    {!! Form::label('meta_desc', 'meta-описание', ['class' => 'add_form__label']) !!}
+    {!! Form::text('meta_desc', null, ['class' => 'add-form__input form-control']) !!}
 </div>
 
 <div class="form-group">

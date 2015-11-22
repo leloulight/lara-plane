@@ -17,7 +17,10 @@ class spaceshipsController extends Controller
     public function index()
     {
         $spaceships = Spaceships::latest('created_at')->paginate(10);
-        return view('spaceships.index', compact('spaceships'));
+
+        $meta_title = 'Космические корабли';
+        $meta_desc = 'Найти космический корабль';
+        return view('spaceships.index', compact('spaceships', 'meta_title', 'meta_desc'));
     }
 
     /**
@@ -36,6 +39,8 @@ class spaceshipsController extends Controller
         // Real or Not
         $spaceship->real = ($spaceship->real ? 'Да' : 'Нет');
 
-        return view('spaceships.show', compact('spaceship', 'carousel'));
+        $meta_title = $spaceship->name;
+        $meta_desc = $spaceship->meta_desc;
+        return view('spaceships.show', compact('spaceship', 'carousel', 'meta_title', 'meta_desc'));
     }
 }
