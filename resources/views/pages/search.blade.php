@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Поиск</h1>
-    @if(count($spaceships) > 0)
+    @if($spaceships)
         <ul class="search-list">
             @foreach($spaceships as $value)
                 <li class="search-list__item">
