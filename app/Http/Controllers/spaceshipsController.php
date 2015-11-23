@@ -39,7 +39,7 @@ class spaceshipsController extends Controller
         // Real or Not
         $spaceship->real = ($spaceship->real ? 'Да' : 'Нет');
 
-        $meta_title = $spaceship->name;
+        $meta_title = $spaceship->meta_title;
         $meta_desc = $spaceship->meta_desc;
         return view('spaceships.show', compact('spaceship', 'carousel', 'meta_title', 'meta_desc'));
     }

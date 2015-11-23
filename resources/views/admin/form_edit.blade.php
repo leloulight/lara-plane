@@ -59,6 +59,11 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('meta_title', 'meta-title', ['class' => 'add_form__label']) !!}
+    {!! Form::text('meta_title', null, ['class' => 'add-form__input form-control']) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('meta_desc', 'meta-описание', ['class' => 'add_form__label']) !!}
     {!! Form::text('meta_desc', null, ['class' => 'add-form__input form-control']) !!}
 </div>
